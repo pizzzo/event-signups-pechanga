@@ -1,6 +1,6 @@
 /** @type {import('prettier').Config} */
 const config = {
-    semi: false,
+    semi: true,
     singleQuote: true,
     trailingComma: 'all',
     useTabs: false,
@@ -19,8 +19,8 @@ const config = {
             },
         },
     ],
-}
+};
 
-export default config
+export default config;
 
 // NOTE:(peter) My prettier defaults.

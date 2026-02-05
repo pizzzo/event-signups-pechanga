@@ -5,7 +5,6 @@ This project is a small **SPA-style webpage** built to demonstrate **core JavaSc
 
 ## Tech Choices
 - **Vanilla JavaScript** – Focus on fundamentals without framework abstraction.
-- **Tailwind CSS** – Utility-first styling for quick UI scaffolding.
 - **SPA-style architecture** – client-side interactions without full page reloads.
 
 ## Prerequisites

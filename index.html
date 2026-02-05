@@ -5,8 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>event-signups</title>
-    <link rel="stylesheet" href="src/styles/style.css" />
-    <script type="module" src="src/main.js" defer></script>
+    <link rel="stylesheet" href="src/styles/styles.css" />
   </head>
   <body class="app-body">
     <div class="app-overlay" id="app-overlay" hidden></div>
@@ -39,10 +38,45 @@
         <a href="/about" class="nav-link" data-link>About</a>
       </nav>
       <div class="drawer-footer">
-        <p class="muted">
-          Made with Vanilla JS and Tailwind v4 by Peter Chevez
-        </p>
+        <p class="muted"></p>
       </div>
     </aside>
+
+    <!--  NOTE: (peter) - Start of main app layout  -->
+
+    <div class="app-layout">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button
+            id="drawer-open"
+            class="icon-button"
+            type="button"
+            aria-label="Open Menu"
+            aria-controls="app-drawer"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <a href="/" class="header-brand" aria-label="Return to Home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">Pechanga Signups</span>
+          </a>
+        </div>
+
+        <div class="header-right">
+          <a href="/events" class="header-cta" data-link
+            >Browse Current Events</a
+          >
+        </div>
+      </header>
+
+      <!-- Main Page Contents NOTE:(peter) adding tab index -1 so I can manage with JS -->
+      <main id="app-main" class="app-main" role="main" tabindex="-1">
+        <!-- NOTE:(peter) Should be injecting with JS here. -->
+      </main>
+    </div>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>
