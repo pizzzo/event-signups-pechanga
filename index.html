@@ -6,9 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>event-signups</title>
     <link rel="stylesheet" href="src/styles.css" />
-    <script type="module" src="src/main.js" defer></script>
+    <script type="module" src="src/app.js" defer></script>
   </head>
   <body class="site">
-    <div id="app"></div>
+    <app-shell></app-shell>
+    <template id="tpl-app-shell">
+      <header class="header">
+        <div class="container header-inner">
+          <a class="brand" href="/" data-link>PECHANGA SIGNUPS</a>
+          <nav class="nav">
+            <a class="nav-link" href="/" data-link>Home</a>
+            <a class="nav-link" href="/events" data-link>Events</a>
+          </nav>
+        </div>
+      </header>
+      <main class="container">
+        <div id="outlet"></div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          &copy;<span id="year"></span>Made w/ Vanilla JS, HTML and TailwindCSS
+        </div>
+      </footer>
+    </template>
   </body>
 </html>
