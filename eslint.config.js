@@ -1,6 +1,6 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import prettier from 'eslint-config-prettier'
+import js from '@eslint/js';
+import globals from 'globals';
+import prettier from 'eslint-config-prettier';
 
 export default [
     {
@@ -14,6 +14,7 @@ export default [
             globals: {
                 ...globals.browser,
                 ...globals.es2021,
+                app: 'writable',
             },
         },
         rules: {
@@ -21,8 +22,9 @@ export default [
 
             'no-console': 'off',
             'no-unused-vars': 'off',
+            'not-defined': 'off',
         },
     },
 
     prettier,
-]
+];

@@ -1,8 +1,10 @@
-import API from './services/API';
+import Store from './services/Store.js';
+import API from './services/API.js';
+import { loadData } from './services/Events.js';
 
-async function loadData() {
-    const data = await API.fetchData('events');
-    console.log(data);
-}
+window.app = {};
+app.store = Store;
 
-loadData();
+window.addEventListener('DOMContentLoaded', async () => {
+    await loadData();
+});
