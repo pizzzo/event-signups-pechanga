@@ -9,26 +9,24 @@
     <script type="module" src="src/app.js" defer></script>
   </head>
   <body class="site">
-    <app-shell></app-shell>
-    <template id="tpl-app-shell">
-      <header class="header">
-        <div class="container header-inner">
-          <a class="brand" href="/" data-link>PECHANGA SIGNUPS</a>
-          <nav class="nav">
-            <a class="nav-link" href="/" data-link>Home</a>
-            <a class="nav-link" href="/events" data-link>Events</a>
-          </nav>
-        </div>
-      </header>
-      <main class="container">
-        <div id="outlet"></div>
-      </main>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="/" data-link>PECHANGA SIGNUPS</a>
+        <nav class="nav">
+          <a class="navlink" href="/" id="linkHome">Home</a>
+          <a class="navlink" href="/events" id="linkEvents">Events</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <div id="outlet"></div>
+    </main>
 
-      <footer class="footer">
-        <div class="container">
-          &copy;<span id="year"></span>Made w/ Vanilla JS, HTML and TailwindCSS
-        </div>
-      </footer>
-    </template>
+    <footer class="footer">
+      <div class="container">
+        &copy; Peter C. - <span id="year"></span> -Made w/ Vanilla JS, HTML and
+        TailwindCSS
+      </div>
+    </footer>
   </body>
 </html>

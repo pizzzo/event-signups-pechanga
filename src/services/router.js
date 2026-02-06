@@ -6,11 +6,13 @@ const Router = {
             a.addEventListener('click', (event) => {
                 event.preventDefault();
                 console.log('Link clicked');
+                const url = event.target.getAttribute('href');
+                Router.go(url);
             });
         });
     },
     go: (route, addToHistory = true) => {
-        console.log(`Going to the ${route}`);
+        console.log(`Going to ${route}`);
     },
 };
 

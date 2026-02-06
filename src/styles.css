@@ -53,14 +53,14 @@ body {
   gap: .75rem;
 }
 
-.nav-link {
+.navlink {
   color: var(--white);
   text-decoration: none;
   padding: .5rem .75rem;
   border-radius: .75rem;
 }
 
-.nav-link:hover {
+.navlink:hover {
   background: rgba(255, 255, 255, .1);
 }
 
