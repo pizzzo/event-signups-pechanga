@@ -3,24 +3,3 @@
 
 @source "../*.html";
 @source "../src/**/*.js";
-
-
-.site-banner {
-  @apply p-4 bg-red-950 h-30 flex items-center text-white shadow-lg
-}
-
-.main-title {
-  @apply font-[Montserrat] ml-1 text-4xl
-}
-
-.menu-btn {
-  @apply p-2 hover:bg-red-900 rounded-lg transition-colors
-}
-
-.sidebar-menu {
-  @apply fixed top-0 left-0 h-full w-80 bg-zinc-800 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col
-}
-
-.sidebar-wrapper {
-  @apply flex items-center justify-between p-4 border-b border-zinc-800 bg-red-950
-}
