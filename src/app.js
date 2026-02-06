@@ -5,6 +5,6 @@ window.app = {};
 app.state = state;
 app.router = Router;
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
     app.router.init();
 });
