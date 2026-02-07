@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   color: var(--charcoal);
   background: var(--bg);
 }
@@ -93,7 +93,7 @@ body {
 .btn {
   display: inline-block;
   margin-top: 1rem;
-  background: var(--red);
+  background: var(--color-green-700);
   color: var(--white);
   text-decoration: none;
   padding: .75rem 1rem;
@@ -119,4 +119,20 @@ body {
     gap: .75rem;
     align-items: flex-start;
   }
+}
+
+.brand {
+  @apply text-4xl
+}
+
+.home-page {
+  @apply bg-slate-200
+}
+
+.events-page {
+  @apply bg-blue-300
+}
+
+.about-page {
+  @apply bg-green-200
 }

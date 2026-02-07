@@ -53,6 +53,11 @@ const Router = {
                     pageElement = document.createElement('events-page');
                 }
                 break;
+            case '/about':
+                {
+                    pageElement = document.createElement('about-page');
+                }
+                break;
             default:
                 if (nextRoute.startsWith('/event/')) {
                     pageElement = document.createElement('h1');

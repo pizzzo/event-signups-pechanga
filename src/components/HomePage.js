@@ -7,5 +7,3 @@ export class HomePage extends HTMLElement {
         this.appendChild(content);
     }
 }
-
-customElements.define('home-page', HomePage);

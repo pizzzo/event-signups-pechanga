@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>event-signups</title>
     <link rel="stylesheet" href="/src/styles.css" />
@@ -15,6 +14,7 @@
         <nav class="nav">
           <a class="navlink" href="/" data-link>Home</a>
           <a class="navlink" href="/events" data-link>Events</a>
+          <a class="navlink" href="/about" data-link>About</a>
         </nav>
       </div>
     </header>
@@ -30,7 +30,7 @@
     </footer>
 
     <template id="home-page-template">
-      <section class="page">
+      <section class="home-page">
         <div class="container">
           <h1 class="page-title">Home</h1>
           <p class="lead muted">Testing template cloning.</p>
@@ -39,18 +39,26 @@
     </template>
 
     <template id="events-page-template">
-      <section class="page">
+      <section class="events-page">
         <div class="container">
           <h1 class="page-title">Events</h1>
           <p class="muted">Should list events here.</p>
 
-          <!-- Later: forms + list -->
           <form class="card" autocomplete="on">
             <label>
               Search
               <input name="q" />
             </label>
           </form>
+        </div>
+      </section>
+    </template>
+
+    <template id="about-page-template">
+      <section class="about-page">
+        <div class="container">
+          <h1 class="page-title">About this site</h1>
+          <p class="lead muted">Testing template cloning.</p>
         </div>
       </section>
     </template>
