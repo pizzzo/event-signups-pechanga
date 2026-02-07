@@ -132,10 +132,20 @@ body {
   @apply text-4xl
 }
 
+.home-page {
+  @apply bg-slate-200
+}
+
+.events-page {
+  @apply bg-blue-300
+}
+
+.about-page {
+  @apply bg-green-200
+}
+
+.main-container {}
 
 .dark {
   color: black;
 }
-
-
-/* NOTE:(peter) - Events Page Styles */

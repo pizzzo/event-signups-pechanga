@@ -1,5 +1,3 @@
-import state from '../services/state.js';
-
 export class HomePage extends HTMLElement {
     connectedCallback() {
         const template = document.getElementById('home-page-template');

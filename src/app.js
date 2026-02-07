@@ -1,5 +1,5 @@
 import Router from './services/router.js';
-import state from './services/state.js';
+import { store } from './services/state.js';
 
 // NOTE: (peter) - Importing my custom web components
 import { HomePage } from './components/HomePage.js';
@@ -13,9 +13,15 @@ customElements.define('about-page', AboutPage);
 customElements.define('event-details-page', EventDetailsPage);
 
 window.app = {};
-app.state = state;
 app.router = Router;
+app.store = store;
+
+window.addEventListener('state-changed', (e) => {
+    console.log('State has changed.');
+    console.log('detail:', e.detail);
+});
 
 window.addEventListener('DOMContentLoaded', () => {
     app.router.init();
+    console.log(store.getState());
 });

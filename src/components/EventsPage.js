@@ -1,4 +1,4 @@
-import state from '../services/state.js';
+import { state } from '../services/state.js';
 import { listEvents } from '../services/eventsTest.js';
 
 const DEMO_EVENTS = listEvents();
@@ -6,8 +6,8 @@ const DEMO_EVENTS = listEvents();
 export class EventsPage extends HTMLElement {
     // NOTE: (peter) - Updated this to maintain form input even on page change. Should only clear if submitted. Clears on tab close or if leaving site though.
     connectedCallback() {
-        if (this._rendered) return;
-        this._rendered = true;
+        if (this.rendered) return;
+        this.rendered = true;
 
         const template = document.getElementById('events-page-template');
         this.replaceChildren(template.content.cloneNode(true));
@@ -33,9 +33,8 @@ export class EventsPage extends HTMLElement {
                     const card = document.createElement('article');
                     card.className = 'card';
                     card.innerHTML = `
-                <h2 class="card-title">${ev.title}</h2>
-                <p class="muted">${ev.date} - ${ev.location}</p>
-                <a class="navlink" href="/event/${ev.id}">View details</a>
+                    <h1>HELLO</h1>
+
                 `;
 
                     return card;

@@ -1,4 +1,4 @@
-const state = {
+export const state = {
     events: [],
     selectedEvent: null,
     registrants: [],
@@ -6,4 +6,21 @@ const state = {
     error: null,
 };
 
-export default state;
+function getState() {
+    return { ...state };
+}
+
+function setState(changeData) {
+    Object.assign(state, changeData);
+
+    // NOTE: (peter) - Creating a state-changed event that can be listened to to trigger render updates.
+    window.dispatchEvent(
+        new CustomEvent('state-changed', {
+            detail: getState(),
+        }),
+    );
+}
+export const store = {
+    getState,
+    setState,
+};
