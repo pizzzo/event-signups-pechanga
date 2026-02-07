@@ -10,13 +10,14 @@ const Router = {
     //NOTE: (peter) - This pulls all links with class "navlink" and adds an eventListener for clicks
     // also preventing default page reload
     init: () => {
-        document.querySelectorAll('a.navlink').forEach((a) => {
-            a.addEventListener('click', (event) => {
-                event.preventDefault();
-                console.log('Link clicked');
-                const url = event.currentTarget.getAttribute('href');
-                Router.go(url);
-            });
+        document.addEventListener('click', (event) => {
+            const a = event.target.closest('a.navlink');
+            if (!a) return;
+
+            event.preventDefault();
+            console.log('Link clicked');
+            const url = a.getAttribute('href');
+            Router.go(url);
         });
 
         window.addEventListener('popstate', () => {
