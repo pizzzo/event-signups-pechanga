@@ -61,8 +61,7 @@ const Router = {
                 break;
             default:
                 if (nextRoute.startsWith('/event/')) {
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = 'Event Details';
+                    pageElement = document.createElement('event-details-page');
                     const eventID = nextRoute.substring(
                         nextRoute.lastIndexOf('/') + 1,
                     );
