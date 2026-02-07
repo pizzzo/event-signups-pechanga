@@ -1,3 +1,5 @@
+// TODO: (peter) - Make this more modular, going to look into possibly using regex?
+
 const Router = {
     //NOTE: (peter) - This pulls all links with class "navlink" and adds an eventListener for clicks
     // also preventing default page reload
@@ -28,15 +30,13 @@ const Router = {
         switch (route) {
             case '/':
                 {
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = 'HOME PAGE test';
+                    pageElement = document.createElement('home-page');
                 }
                 break;
 
             case '/events':
                 {
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = 'EVENTS PAGE test';
+                    pageElement = document.createElement('events-page');
                 }
                 break;
             default:
