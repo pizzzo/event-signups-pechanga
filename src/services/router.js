@@ -1,5 +1,11 @@
 // TODO: (peter) - Make this more modular, going to look into possibly using regex?
 
+const normalizeRoute = (route) => {
+    if (!route) return '/';
+    if (route.length > 1 && route.endsWith('/')) return route.slice(0, -1);
+    return route;
+};
+
 const Router = {
     //NOTE: (peter) - This pulls all links with class "navlink" and adds an eventListener for clicks
     // also preventing default page reload
@@ -8,26 +14,34 @@ const Router = {
             a.addEventListener('click', (event) => {
                 event.preventDefault();
                 console.log('Link clicked');
-                const url = event.target.getAttribute('href');
+                const url = event.currentTarget.getAttribute('href');
                 Router.go(url);
             });
         });
 
-        window.addEventListener('popstate', (e) => {
-            Router.go(e.state.route, false);
+        window.addEventListener('popstate', () => {
+            Router.go(location.pathname, false);
         });
 
         // NOTE: (peter) - Checking original URL
-        Router.go(location.pathname);
+        Router.go(location.pathname, false);
     },
     go: (route, addToHistory = true) => {
-        console.log(`Going to ${route}`);
+        const nextRoute = normalizeRoute(route);
+        const currentRoute = normalizeRoute(location.pathname);
+
+        console.log(`Going to ${nextRoute}`);
+
+        if (nextRoute === currentRoute) {
+            addToHistory = false;
+        }
 
         if (addToHistory) {
-            history.pushState({ route }, null, route);
+            history.pushState({ route: nextRoute }, null, nextRoute);
         }
+
         let pageElement = null;
-        switch (route) {
+        switch (nextRoute) {
             case '/':
                 {
                     pageElement = document.createElement('home-page');
@@ -40,17 +54,18 @@ const Router = {
                 }
                 break;
             default:
-                if (route.startsWith('/event/')) {
+                if (nextRoute.startsWith('/event/')) {
                     pageElement = document.createElement('h1');
                     pageElement.textContent = 'Event Details';
-                    const eventID = route.substring(route.lastIndexOf('/') + 1);
+                    const eventID = nextRoute.substring(
+                        nextRoute.lastIndexOf('/') + 1,
+                    );
                     pageElement.dataset.id = eventID;
                 }
         }
         if (pageElement) {
-            const cachedElement = document.querySelector('main');
-            cachedElement.children[0].remove();
-            cachedElement.appendChild(pageElement);
+            const cachedElement = document.querySelector('#outlet');
+            cachedElement.replaceChildren(pageElement);
             // NOTE: (peter) - This resets scroll position on route change.
             window.scrollX = 0;
             window.scrollY = 0;

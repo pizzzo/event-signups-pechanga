@@ -5,16 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>event-signups</title>
-    <link rel="stylesheet" href="src/styles.css" />
-    <script type="module" src="src/app.js" defer></script>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/app.js" defer></script>
   </head>
   <body class="site">
     <header class="header">
       <div class="container header-inner">
         <a class="navlink brand" href="/" data-link>PECHANGA SIGNUPS</a>
         <nav class="nav">
-          <a class="navlink" href="/" id="linkHome">Home</a>
-          <a class="navlink" href="/events" id="linkEvents">Events</a>
+          <a class="navlink" href="/" data-link>Home</a>
+          <a class="navlink" href="/events" data-link>Events</a>
         </nav>
       </div>
     </header>
@@ -30,19 +30,29 @@
     </footer>
 
     <template id="home-page-template">
-      <style>
-        h2 {
-          color: green;
-        }
-      </style>
-      <h2>This is the home page.</h2>
-      <p>Testing template cloning.</p>
+      <section class="page">
+        <div class="container">
+          <h1 class="page-title">Home</h1>
+          <p class="lead muted">Testing template cloning.</p>
+        </div>
+      </section>
     </template>
 
     <template id="events-page-template">
-      <h2>This is the events page!</h2>
-      <p>Testing template cloning.</p>
-      <p>Should list events here.</p>
+      <section class="page">
+        <div class="container">
+          <h1 class="page-title">Events</h1>
+          <p class="muted">Should list events here.</p>
+
+          <!-- Later: forms + list -->
+          <form class="card" autocomplete="on">
+            <label>
+              Search
+              <input name="q" />
+            </label>
+          </form>
+        </div>
+      </section>
     </template>
   </body>
 </html>

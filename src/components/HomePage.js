@@ -1,8 +1,6 @@
-export default class HomePage extends HTMLElement {
-    constructor() {
-        super();
-    }
-    // NOTE: (peter) - connectedCallback is used to do a deep clone of the specified template.
+import state from '../services/state.js';
+
+export class HomePage extends HTMLElement {
     connectedCallback() {
         const template = document.getElementById('home-page-template');
         const content = template.content.cloneNode(true);

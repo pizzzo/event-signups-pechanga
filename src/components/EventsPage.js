@@ -1,12 +1,20 @@
-export default class EventsPage extends HTMLElement {
-    constructor() {
-        super();
-    }
-    // NOTE: (peter) - connectedCallback is used to do a deep clone of the specified template.
+import state from '../services/state.js';
+
+export class EventsPage extends HTMLElement {
     connectedCallback() {
+        if (this._rendered) return;
+        this._rendered = true;
+
         const template = document.getElementById('events-page-template');
-        const content = template.content.cloneNode(true);
-        this.appendChild(content);
+        this.replaceChildren(template.content.cloneNode(true));
+
+        const input = this.querySelector('input[name="q"]');
+
+        input.value = state.eventSearch ?? '';
+
+        input.addEventListener('input', (e) => {
+            state.eventSearch = e.target.value;
+        });
     }
 }
 
