@@ -136,3 +136,7 @@ body {
 .about-page {
   @apply bg-green-200
 }
+
+.dark {
+  color: black;
+}

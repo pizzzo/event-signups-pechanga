@@ -5,10 +5,12 @@ import state from './services/state.js';
 import { HomePage } from './components/HomePage.js';
 import { EventsPage } from './components/EventsPage.js';
 import { AboutPage } from './components/AboutPage.js';
+import { EventDetailsPage } from './components/EventDetailsPage.js';
 
 customElements.define('home-page', HomePage);
 customElements.define('events-page', EventsPage);
 customElements.define('about-page', AboutPage);
+customElements.define('event-details-page', EventDetailsPage);
 
 window.app = {};
 app.state = state;

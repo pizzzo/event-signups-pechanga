@@ -1,43 +1,7 @@
 import state from '../services/state.js';
+import { listEvents } from '../services/eventsTest.js';
 
-const DEMO_EVENTS = [
-    {
-        id: '1',
-        title: 'Great Oak Tour',
-        date: '2026-02-10',
-        location: 'Great Oak',
-    },
-    {
-        id: '2',
-        title: 'Cove Tribal',
-        date: '2026-02-11',
-        location: 'The Cove',
-    },
-    {
-        id: '3',
-        title: 'Valentines Visit',
-        date: '2026-02-14',
-        location: "Kelsey's",
-    },
-    {
-        id: '4',
-        title: 'Great Oak Tour',
-        date: '2026-02-15',
-        location: 'Great Oak',
-    },
-    {
-        id: '5',
-        title: 'Great Oak Tour',
-        date: '2026-02-15',
-        location: 'Great Oak',
-    },
-    {
-        id: '6',
-        title: 'Great Oak Tour',
-        date: '2026-02-15',
-        location: 'Great Oak',
-    },
-];
+const DEMO_EVENTS = listEvents();
 
 export class EventsPage extends HTMLElement {
     // NOTE: (peter) - Updated this to maintain form input even on page change. Should only clear if submitted. Clears on tab close or if leaving site though.

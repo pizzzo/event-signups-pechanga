@@ -21,6 +21,7 @@ export default [
             ...js.configs.recommended.rules,
 
             'no-console': 'off',
+            'no-debugger': 'off',
             'no-unused-vars': 'off',
             'not-defined': 'off',
         },
