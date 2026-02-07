@@ -33,8 +33,9 @@ export class EventsPage extends HTMLElement {
                     const card = document.createElement('article');
                     card.className = 'card';
                     card.innerHTML = `
-                    <h1>HELLO</h1>
-
+                <h2 class="card-title">${ev.title}</h2>
+                <p class="muted">${ev.date} - ${ev.location}</p>
+                <a class="navlink" href="/event/${ev._id}">View details</a>
                 `;
 
                     return card;

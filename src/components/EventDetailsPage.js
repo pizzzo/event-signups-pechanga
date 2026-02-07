@@ -14,6 +14,7 @@ export class EventDetailsPage extends HTMLElement {
         const titleElement = this.querySelector('#eventTitle');
         const infoElement = this.querySelector('#eventInfo');
         const bodyElement = this.querySelector('#eventBody');
+        const imgElement = this.querySelector('#eventImg');
 
         if (!event) {
             titleElement.textContent = 'Event not found';
@@ -25,5 +26,6 @@ export class EventDetailsPage extends HTMLElement {
         titleElement.textContent = event.title;
         infoElement.textContent = `${event.date} - ${event.location}`;
         bodyElement.textContent = event.description;
+        imgElement.src = event.imageUrl;
     }
 }

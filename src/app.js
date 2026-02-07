@@ -18,10 +18,8 @@ app.store = store;
 
 window.addEventListener('state-changed', (e) => {
     console.log('State has changed.');
-    console.log('detail:', e.detail);
 });
 
 window.addEventListener('DOMContentLoaded', () => {
     app.router.init();
-    console.log(store.getState());
 });
