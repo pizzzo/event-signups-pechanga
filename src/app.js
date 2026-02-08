@@ -2,15 +2,10 @@ import Router from './services/router.js';
 import { store } from './services/state.js';
 
 // NOTE: (peter) - Importing my custom web components
-import { HomePage } from './components/HomePage.js';
-import { EventsPage } from './components/EventsPage.js';
-import { AboutPage } from './components/AboutPage.js';
-import { EventDetailsPage } from './components/EventDetailsPage.js';
-
-customElements.define('home-page', HomePage);
-customElements.define('events-page', EventsPage);
-customElements.define('about-page', AboutPage);
-customElements.define('event-details-page', EventDetailsPage);
+import { HomePage } from './pages/HomePage.js';
+import { EventsPage } from './pages/EventsPage.js';
+import { AboutPage } from './pages/AboutPage.js';
+import { EventDetailsPage } from './pages/EventDetailsPage.js';
 
 window.app = {};
 app.router = Router;

@@ -5,3 +5,5 @@ export class AboutPage extends HTMLElement {
         this.appendChild(content);
     }
 }
+
+customElements.define('about-page', AboutPage);

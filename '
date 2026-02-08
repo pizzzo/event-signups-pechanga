@@ -1,5 +1,6 @@
 import { state } from '../services/state.js';
 import { listEvents } from '../services/eventsTest.js';
+import { EventCard } from '../components/eventCard.js';
 
 const DEMO_EVENTS = listEvents();
 
@@ -28,25 +29,21 @@ export class EventsPage extends HTMLElement {
                   })
                 : DEMO_EVENTS;
 
-            listEl.replaceChildren(
-                ...filtered.map((ev) => {
-                    const card = document.createElement('article');
-                    card.className = 'card';
-                    card.innerHTML = `
-                <h2 class="card-title">${ev.title}</h2>
-                <p class="muted">${ev.date} - ${ev.location}</p>
-                <a class="navlink" href="/event/${ev._id}">View details</a>
-                `;
-
-                    return card;
-                }),
-            );
             if (filtered.length === 0) {
                 const empty = document.createElement('p');
                 empty.className = 'muted';
                 empty.textContent = 'No events match your search.';
                 listEl.replaceChildren(empty);
+                return;
             }
+
+            listEl.replaceChildren(
+                ...filtered.map((ev) => {
+                    const card = document.createElement('event-card');
+                    card.event = ev;
+                    return card;
+                }),
+            );
         };
 
         input.addEventListener('input', (e) => {
@@ -56,3 +53,5 @@ export class EventsPage extends HTMLElement {
         renderList();
     }
 }
+
+customElements.define('events-page', EventsPage);

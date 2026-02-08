@@ -29,3 +29,5 @@ export class EventDetailsPage extends HTMLElement {
         imgElement.src = event.imageUrl;
     }
 }
+
+customElements.define('event-details-page', EventDetailsPage);
