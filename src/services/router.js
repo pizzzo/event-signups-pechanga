@@ -72,8 +72,7 @@ const Router = {
             const cachedElement = document.querySelector('#outlet');
             cachedElement.replaceChildren(pageElement);
             // NOTE: (peter) - This resets scroll position on route change.
-            window.scrollX = 0;
-            window.scrollY = 0;
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         }
     },
 };
