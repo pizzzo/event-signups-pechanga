@@ -2,8 +2,8 @@ import { getEventById } from '../services/eventsTest.js';
 
 export class EventDetailsPage extends HTMLElement {
     connectedCallback() {
-        if (this._rendered) return;
-        this._rendered = true;
+        if (this.rendered) return;
+        this.rendered = true;
 
         const template = document.getElementById('event-details-template');
         this.replaceChildren(template.content.cloneNode(true));

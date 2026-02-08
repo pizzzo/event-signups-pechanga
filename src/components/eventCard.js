@@ -9,26 +9,34 @@ export class EventCard extends HTMLElement {
     }
 
     connectCallback() {
-        if (this._event) this.render();
+        if (this._event && !this.rendered) this.render();
     }
 
     render() {
         if (!this._event) return;
 
-        const ev = this._event;
+        const template = document.getElementById('event-card-template');
+        if (!template)
+            throw new Error('Missing #event-card-template in markup');
 
-        this.className = 'event-card';
+        this.replaceChildren(template.content.cloneNode(true));
 
-        this.innerHTML = `
-        <img class="card-image" src="${ev.imageUrl}" alt="${ev.title}">
-        <h2 class="card-title"></h2>
-        <p class="muted"></p>
-        <a class="navlink" href="/event/${ev._id}">View Details</a>
-        `;
+        const link = this.querySelector('.navlink');
+        const img = this.querySelector('.event-card-image');
+        const title = this.querySelector('.event-card-title');
+        const date = this.querySelector('.event-card-date');
+        const loc = this.querySelector('.event-card-location');
+        const badge = this.querySelector('.event-card-badge');
 
-        this.querySelector('.card-title').textContent = ev.title;
-        this.querySelector('.muted').textContent =
-            `${ev.date} - ${ev.location}`;
+        title.textContent = this._event.title;
+        date.textContent = this._event.date;
+        loc.textContent = this._event.location;
+
+        link.href = `/event/${this._event._id}`;
+        img.src = this._event.imageUrl;
+        img.alt = this._event.title;
+
+        badge.hidden = !this._event.featured;
     }
 }
 
