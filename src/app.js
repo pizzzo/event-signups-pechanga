@@ -11,7 +11,7 @@ window.app = {};
 app.router = Router;
 app.store = store;
 
-window.addEventListener('state-changed', (e) => {
+window.addEventListener('state-changed', () => {
     console.log(app.store.getState());
 });
 

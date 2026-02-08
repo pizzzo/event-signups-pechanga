@@ -1,3 +1,5 @@
+import { listEvents } from '../services/eventsTest';
+
 export class HomePage extends HTMLElement {
     connectedCallback() {
         if (this.rendered) return;
@@ -8,6 +10,18 @@ export class HomePage extends HTMLElement {
         this.replaceChildren(content);
 
         const featuredContainer = this.querySelector('#featuredEvents');
+
+        const events = listEvents();
+
+        const featured = events.filter((e) => e.featured).slice(0, 3);
+
+        featuredContainer.replaceChildren(
+            ...featured.map((ev) => {
+                const card = document.createElement('event-card');
+                card.event = ev;
+                return card;
+            }),
+        );
     }
 }
 
