@@ -19,7 +19,6 @@ function setState(changeData) {
             detail: getState(),
         }),
     );
-    return 'State has changed';
 }
 export const store = {
     getState,

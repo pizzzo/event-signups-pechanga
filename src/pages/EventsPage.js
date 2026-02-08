@@ -1,4 +1,4 @@
-import { state } from '../services/state.js';
+import { store } from '../services/state.js';
 import { listEvents } from '../services/eventsTest.js';
 import { EventCard } from '../components/eventCard.js';
 
@@ -13,13 +13,15 @@ export class EventsPage extends HTMLElement {
         const template = document.getElementById('events-page-template');
         this.replaceChildren(template.content.cloneNode(true));
 
-        const input = this.querySelector('input[name="q"]');
-        const listEl = this.querySelector('#eventsList');
-
-        input.value = state.eventSearch ?? '';
+        this.input = this.querySelector('input[name="q"]');
+        this.listEl = this.querySelector('#eventsList');
 
         const renderList = () => {
-            const q = (state.eventSearch ?? '').trim().toLowerCase();
+            const { eventSearch } = store.getState();
+            const nextVal = eventSearch ?? '';
+            if (this.input.value !== nextVal) this.input.value = nextVal;
+
+            const q = nextVal.trim().toLowerCase();
 
             const filtered = q
                 ? DEMO_EVENTS.filter((ev) => {
@@ -33,11 +35,11 @@ export class EventsPage extends HTMLElement {
                 const empty = document.createElement('p');
                 empty.className = 'muted';
                 empty.textContent = 'No events match your search.';
-                listEl.replaceChildren(empty);
+                this.listEl.replaceChildren(empty);
                 return;
             }
 
-            listEl.replaceChildren(
+            this.listEl.replaceChildren(
                 ...filtered.map((ev) => {
                     const card = document.createElement('event-card');
                     card.event = ev;
@@ -46,11 +48,16 @@ export class EventsPage extends HTMLElement {
             );
         };
 
-        input.addEventListener('input', (e) => {
-            state.eventSearch = e.target.value;
-            renderList();
+        this.input.addEventListener('input', (e) => {
+            store.setState({ eventSearch: e.target.value });
         });
+
+        this.onStateChanged = () => renderList();
+        window.addEventListener('state-changed', this.onStateChanged);
         renderList();
+    }
+    disconnectedCallback() {
+        window.removeEventListener('state-changed', this.onStateChanged);
     }
 }
 
