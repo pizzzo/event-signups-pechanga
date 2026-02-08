@@ -1,3 +1,4 @@
+// TODO: (peter) - make use of templates rather than using innerHTML.
 export class EventCard extends HTMLElement {
     set event(value) {
         this._event = value;
@@ -19,6 +20,7 @@ export class EventCard extends HTMLElement {
         this.className = 'event-card';
 
         this.innerHTML = `
+        <img class="card-image" src="${ev.imageUrl}" alt="${ev.title}">
         <h2 class="card-title"></h2>
         <p class="muted"></p>
         <a class="navlink" href="/event/${ev._id}">View Details</a>
