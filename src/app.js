@@ -17,7 +17,7 @@ app.router = Router;
 app.store = store;
 
 window.addEventListener('state-changed', (e) => {
-    console.log('State has changed.');
+    console.log(app.store.getState());
 });
 
 window.addEventListener('DOMContentLoaded', () => {
