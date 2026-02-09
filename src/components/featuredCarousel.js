@@ -42,7 +42,7 @@ export class FeaturedCarousel extends HTMLElement {
 
     renderCard() {
         const ev = this.events[this.index];
-        if (!ev || this.selected) return;
+        if (!ev || !this.selected) return;
         const card = document.createElement('event-card');
         card.event = ev;
         card.classList.add('carousel-card');
@@ -50,7 +50,7 @@ export class FeaturedCarousel extends HTMLElement {
 
         // TODO: (peter) - showing numbers for index currently, might just change to dots w/ CSS.
         if (this.counterEl) {
-            this.counterEl.textContent = `${this.index + 1} / ${this.event.length}`;
+            this.counterEl.textContent = `${this.index + 1} / ${this.events.length}`;
         }
     }
 }
