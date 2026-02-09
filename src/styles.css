@@ -188,6 +188,9 @@
     --container: 1100px;
     --gutter: 1rem;
 
+    --header-height: 80px;
+    --sidebar-width: 300px;
+
     @media(width > 900px) {
       --gutter: 1.5rem;
     }
@@ -203,7 +206,7 @@
     font-size: var(--font-size-regular);
     color: hsl(0 0% 92%);
     background:
-      radial-gradient(1200px 500px at 20% -10%, var(--accent-soft)),
+      radial-gradient(1200px 500px at 20% -10%, var(--accent-soft), transparent 60%),
       radial-gradient(900px 500px at 90% 0%, var(--brand-soft), transparent 55%),
       var(--surface-0);
   }
@@ -331,6 +334,8 @@
     }
   }
 
+  /* SIDEBAR STYLES */
+
   .site-side-bar {
     background: linear-gradient(to bottom, hsl(0 0% 14% / 0.95), hsl(0 0% 12% / 0.95));
     border-right: 1px solid var(--border-subtle);
@@ -381,6 +386,53 @@
     outline-offset: 2px;
   }
 
+  @media (width > 900px) {
+    .site-side-bar {
+      grid-area: sidebar;
+      position: sticky;
+      top: var(--header-height);
+      max-height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+    }
+  }
+
+  @media (width <=900px) {
+    .site-side-bar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: min(var(--sidebar-width), 85vw);
+      height: 100vh;
+
+      transform: translateX(-100%);
+      transition: transform 200ms ease;
+
+      z-index: 60;
+    }
+
+    body[data-menu-open="true"] .site-side-bar {
+      transform: translateX(0);
+    }
+
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: hsl(0 0% 0% / 0.55);
+      z-index: 55;
+    }
+
+    body[data-menu-open="true"] {
+      overflow: hidden;
+    }
+  }
+
+  .side-bar-nav a[aria-current="page"] {
+    background: hsl(0 0% 100% / 0.06);
+    border-color: hsl(47 67% 73% / 0.25);
+    box-shadow: 0 0 0 1px hsl(47 67% 73% / 0.10) inset;
+  }
+
+  /* SIDEBAR END */
+
   .site-main {
     grid-area: main;
     padding: 1rem;
@@ -394,6 +446,119 @@
     padding: 1rem var(--gutter);
   }
 
+  /* EVENTS LIST STYLES */
+  #eventsList,
+  #featuredEvents {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (width > 760px) {
+
+    #eventsList,
+    #featuredEvents {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (width > 1100px) {
+
+    #eventsList,
+    #featuredEvents {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* EVENT CARD STYLES */
+  .event-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--surface-1), hsl(0 0% 14%));
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow);
+
+    transform: translateZ(0);
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+
+  .event-card:hover {
+    transform: translateY(-3px);
+    border-color: hsl(47 67% 73% / 0.25);
+  }
+
+  .event-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.02);
+  }
+
+  .event-card-body {
+    padding: 0.9rem 0.95rem 1rem;
+  }
+
+  .event-card-title {
+    color: hsl(0 0% 96%);
+    font-weight: 650;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .event-card-details {
+    color: hsl(0 0% 92% / 0.75);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .event-card-dot {
+    opacity: 0.6;
+  }
+
+  .event-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+    font-weight: 650;
+
+    color: hsl(0 0% 10%);
+    background: linear-gradient(to right, var(--clr-gold-100), var(--brand));
+    border: 1px solid hsl(47 67% 90% / 0.35);
+  }
+
+  .page-title {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    border-radius: var(--radius);
+    background: hsl(0 0% 100% / 0.04);
+    border: 1px solid var(--border-subtle);
+    padding: 1rem;
+  }
+
+  input {
+    width: 100%;
+    margin-top: 0.35rem;
+    padding: 0.65rem 0.75rem;
+
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: hsl(0 0% 0% / 0.25);
+    color: hsl(0 0% 92%);
+  }
+
+  input:focus {
+    outline: 2px solid hsl(47 67% 73% / 0.45);
+    outline-offset: 2px;
+  }
 
 }
 
