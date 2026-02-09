@@ -12,7 +12,9 @@
     <!-- SITE HEADER -->
     <header class="site-header">
       <div class="container header-inner">
-        <button class="menu-button"></button>
+        <button class="menu-button" type="button" aria-label="Open menu">
+          <img src="/src/assets/icons/menu-24.svg" alt="Menu Button" />
+        </button>
         <h1 class="header-title">
           <a class="navlink" href="/">PECHANGA SIGNUPS</a>
         </h1>
@@ -20,7 +22,7 @@
     </header>
 
     <!-- SITE SIDE BAR -->
-    <aside class="site-side-bar">
+    <aside id="sidebar" class="site-side-bar" aria-label="Sidebar nav menu">
       <h2>Navigation</h2>
       <nav class="side-bar-nav">
         <a class="navlink" href="/"
@@ -32,6 +34,7 @@
         <a class="navlink" href="/about">About</a>
       </nav>
     </aside>
+    <div class="backdrop" data-backdrop hidden></div>
 
     <!-- SITE MAIN -->
     <main class="site-main">

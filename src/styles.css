@@ -6,7 +6,7 @@
 /* NOTE:(peter)  My main CSS start.
  * A lot of this is cribbed from Kevin Powells youtube videos :D, */
 /* allows for modularity and reuse. */
-@layer reset, base, layout, componets;
+@layer reset, base, layout, components, utilities;
 
 @layer reset {
 
@@ -137,6 +137,7 @@
 
     /* NOTE:(peter) Structuring custom properties here. It's verbose and requires more typing but */
     /*           it helps with keeping properties clear and readable. */
+    /* TOKENS */
 
     /* My Color Palette vars */
     --text-main: var(--clr-charcoal-900);
@@ -171,6 +172,12 @@
     --border-radius-3: 0.75rem;
 
     --header-height: 72px;
+    --sidebar-width: 300px;
+    --gutter: 1rem;
+
+    @media(width > 900px) {
+      --gutter: 1.5rem;
+    }
 
   }
 
@@ -221,42 +228,89 @@
     min-height: 100vh;
     display: grid;
 
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: var(--header-height) 1fr auto;
 
     grid-template-areas:
-      "header header"
-      "sidebar main"
-      "footer footer";
+      "header"
+      "main"
+      "footer";
   }
 
-  .header-inner {
-    display: flex;
+  @media (width > 900px) {
+    .site {
+      grid-template-columns: var(--sidebar-width) 1fr;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    }
   }
+
 
 
 }
 
 @layer components {
   .site-header {
-    top: 0;
     position: sticky;
-    z-index: 10;
-
-    background-color: var(--clr-charcoal-600);
-    padding-inline: 2rem;
+    top: 0;
+    z-index: 50;
 
     grid-area: header;
+
+    background-color: var(--clr-charcoal-600);
+    padding-inline: var(--gutter);
 
     min-height: var(--header-height);
     display: flex;
     align-items: center;
   }
 
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    background-color: var(--clr-charcoal-400);
+
+    border: 0;
+    border-radius: var(--border-radius-2);
+
+    background: transparent;
+    color: var(--text-high-contrast);
+    cursor: pointer;
+  }
+
+  .menu-button:hover,
+  .menu-button:focus-visible {
+    outline: 2px solid var(--text-brand);
+    outline-offset: 2px;
+  }
+
+  @media (width > 900px) {
+    .menu-button {
+      display: none;
+    }
+  }
+
   .site-side-bar {
     width: 300px;
+
     position: sticky;
-    top: 0;
+    top: var(--header-height);
+
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
     align-self: start;
     background-color: var(--clr-charcoal-700);
     grid-area: sidebar;
@@ -264,6 +318,7 @@
 
   .site-main {
     grid-area: main;
+    padding: 1rem;
   }
 
   .site-footer {
@@ -271,7 +326,10 @@
     padding-inline: 2rem;
     color: var(--text-high-contrast);
     grid-area: footer;
+
+    position: relative;
   }
+
 
 }
 
