@@ -1,143 +1,271 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import "tailwindcss";
 
 @source "../*.html";
 @source "../src/**/*.js";
 
-:root {
-  --red: #8b1e1e;
-  --gold: #c9a227;
-  --charcoal: #1f2328;
-  --white: #ffffff;
-  --bg: #f6f7f8;
+/* NOTE:(peter)  My main CSS start.
+ * A lot of this is cribbed from Kevin Powells youtube videos :D, */
+/* allows for modularity and reuse. */
+@layer reset, base, layout, componets;
+
+@layer reset {
+
+  /*NOTE:(peter) Default CSS reset START -- no need to edit this.*/
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    color: hsl(0, 2%, 79%);
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  [role="list"] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-block-size: 100vh;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  img,
+  picture {
+    max-inline-size: 100%;
+    display: block;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* Default CSS reset END */
 }
 
+@layer base {
+  :root {
+    /*NOTE:(peter) !PRIMITIVES --START , can make edits to colors/fonts here.*/
+    /* Colors */
+    --clr-white: hsl(0 0% 100%);
+    --clr-gray-300: hsl(0 2% 97%);
+    --clr-gray-400: hsl(0 2% 85%);
+    --clr-gray-500: hsl(0 2% 75%);
+    --clr-gold-100: hsl(47 67% 85%);
+    --clr-gold-200: hsl(47 67% 73%);
+    --clr-gold-300: hsl(47 52% 66%);
+    --clr-red-600: hsl(350 66% 24%);
+    --clr-red-700: hsl(350 66% 18%);
+    --clr-red-800: hsl(350 60% 14%);
+    --clr-red-900: hsl(350 66% 10%);
+    --clr-charcoal-400: hsl(0 0% 40%);
+    --clr-charcoal-500: hsl(0 0% 30%);
+    --clr-charcoal-600: hsl(0 0% 25%);
+    --clr-charcoal-700: hsl(0 0% 20%);
+    --clr-charcoal-800: hsl(0 0% 15%);
+    --clr-charcoal-900: hsl(0 0% 10%);
+    --clr-black: hsl(0 0% 0%);
 
-html,
-body {
-  height: 100%;
-}
+    /* Fonts */
+    --ff-heading: "Montserrat", sans-serif;
+    --ff-body: "Montserrat", sans-serif;
 
-body {
-  margin: 0;
-  font-family: Montserrat, sans-serif;
-  color: var(--charcoal);
-  background: var(--bg);
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
+    --fs-300: 0.875rem;
+    --fs-400: 1rem;
+    --fs-500: 1.125rem;
+    --fs-600: 1.25rem;
+    --fs-700: 1.5rem;
+    --fs-800: 2rem;
+    --fs-900: 3.75rem;
+    --fs-1000: 3.75rem;
 
-.container {
-  width: min(1100px, calc(100% - 2rem));
-  margin-inline: auto;
-}
+    @media (width > 760px) {
+      --fs-300: 0.875rem;
+      --fs-400: 1rem;
+      --fs-500: 1.25rem;
+      --fs-600: 1.5rem;
+      --fs-700: 2rem;
+      --fs-800: 3rem;
+      --fs-900: 5rem;
+      --fs-1000: 7.5rem;
+    }
 
-.header {
-  background: var(--charcoal);
-  color: var(--white);
-  border-bottom: 4px solid var(--gold);
-}
+    /* !PRIMITIVES --END  */
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-}
 
-.brand {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: .3px;
-}
+    /* NOTE:(peter) Structuring custom properties here. It's verbose and requires more typing but */
+    /*           it helps with keeping properties clear and readable. */
 
-.nav {
-  display: flex;
-  gap: .75rem;
-}
+    /* My Color Palette vars */
+    --text-main: var(--clr-charcoal-900);
+    --text-high-contrast: var(--clr-white);
+    --text-brand: var(--clr-gold-200);
+    --text-brand-light: var(--clr-gold-100);
 
-.navlink {
-  color: var(--white);
-  text-decoration: none;
-  padding: .5rem .75rem;
-  border-radius: .75rem;
-}
+    --background-accent-light: var(--clr-red-600);
+    --background-accent-main: var(--clr-red-700);
+    --background-accent-dark: var(--clr-red-800);
 
-.navlink:hover {
-  background: rgba(255, 255, 255, .1);
-}
+    --background-extra-light: var(--clr-gray-300);
+    --background-light: var(--clr-gray-400);
+    --background-main: var(--clr-gray-500);
+    --background-dark: var(--clr-charcoal-700);
+    --background-extra-dark: var(--clr-charcoal-800);
 
-.page {
-  padding: 2rem 0 3rem;
-}
+    /* Font Size vars */
+    --font-size-heading-sm: var(--fs-700);
+    --font-size-heading-regular: var(--fs-800);
+    --font-size-heading-lg: var(--fs-900);
+    --font-size-heading-xl: var(--fs-1000);
 
-.page-title {
-  margin: 0 0 .75rem;
-  font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
-}
+    --font-size-sm: var(--fs-300);
+    --font-size-regular: var(--fs-400);
+    --font-size-md: var(--fs-500);
+    --font-size-lg: var(--fs-600);
 
-.lead {
-  font-size: 1.05rem;
-  max-width: 55ch;
-}
+    /* Util vars */
+    --border-radius-1: 0.25rem;
+    --border-radius-2: 0.5rem;
+    --border-radius-3: 0.75rem;
 
-.muted {
-  color: rgba(31, 35, 40, .75);
-}
+  }
 
-.card {
-  background: var(--white);
-  border: 1px solid rgba(31, 35, 40, .1);
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .05);
-}
+  html {
+    font-family: var(--ff-body);
+    line-height: 1.6;
+  }
 
-.btn {
-  display: inline-block;
-  margin-top: 1rem;
-  background: var(--color-green-700);
-  color: var(--white);
-  text-decoration: none;
-  padding: .75rem 1rem;
-  border-radius: .9rem;
-  font-weight: 600;
-  border: 1px solid rgba(0, 0, 0, .08);
-}
+  body {
+    font-size: var(--font-size-regular);
+    color: var(--text-main);
+    background-color: var(--background-main);
+  }
 
-.btn:hover {
-  filter: brightness(1.05);
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--ff-heading);
+    color: var(--text-high-contrast)
+  }
 
-.footer {
-  margin-top: 0rem;
-  padding: 1.25rem 0;
-  background: var(--charcoal);
-  color: rgba(255, 255, 255, .85);
-}
+  h1 {
+    font-size: var(--font-size-heading-regular);
+  }
 
-@media (max-width: 520px) {
-  .header-inner {
-    flex-direction: column;
-    gap: .75rem;
-    align-items: flex-start;
+  a {
+    color: var(--text-brand);
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--text-brand-light)
+  }
+
+  /* NOTE:(peter) Keeps search box uniform */
+  input {
+    appearance: none;
   }
 }
 
-.brand {
-  @apply text-4xl
+
+@layer layout {
+
+  /* Grid layout */
+  .site {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+
+    .site-header {
+      grid-area: header;
+    }
+
+    .site-main {
+      grid-area: main;
+    }
+
+    .site-footer {
+      grid-area: footer;
+    }
+  }
+
+
 }
 
-.search {
-  border: 2px solid black;
+@layer components {
+  .menu-button {}
+
+  .site-header {
+    background-color: var(--clr-charcoal-600);
+    height: 100%;
+    padding-inline: 2rem;
+  }
+
+  .site-footer {
+    background-color: var(--clr-charcoal-600);
+    height: 100%;
+    padding-inline: 2rem;
+    color: var(--text-high-contrast)
+  }
+
 }
 
+@layer utilities {
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 
-
-/* NOTE:(peter) - This block styles whatever custom component is loaded*/
-main>#outlet>* {
-  display: block;
-  flex: 1;
-  height: 100%;
 }
