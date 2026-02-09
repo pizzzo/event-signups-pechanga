@@ -20,6 +20,9 @@ export class FeaturedCarousel extends HTMLElement {
         this.selected = this.querySelector('.carousel-selected');
         this.counterEl = this.querySelector('.carousel-count');
 
+        this.previousBtn = this.querySelector('.prev');
+        this.nextBtn = this.querySelector('.next');
+
         // NOTE: (peter) - button logic, left right in carousel.
         this.previousBtn.addEventListener('click', () => this.go(-1));
         this.nextBtn.addEventListener('click', () => this.go(1));
@@ -33,6 +36,8 @@ export class FeaturedCarousel extends HTMLElement {
         if (!len) return;
         this.index = (this.index + change + len) % len;
         this.renderCard();
+
+        console.log(`Currently on:${this.index} going to->${change}`);
     }
 
     renderCard() {
