@@ -6,6 +6,16 @@ const normalizeRoute = (route) => {
     return route;
 };
 
+function setActiveNav(path) {
+    const links = document.querySelectorAll('nav.side-bar-nav a.navlink[href]');
+    links.forEach((a) => {
+        const href = normalizeRoute(a.getAttribute('href'));
+        const isActive = href === path;
+        if (isActive) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+    });
+}
+
 const Router = {
     //NOTE: (peter) - This pulls all links with class "navlink" and adds an eventListener for clicks
     // also preventing default page reload
@@ -29,6 +39,8 @@ const Router = {
     },
     go: (route, addToHistory = true) => {
         const nextRoute = normalizeRoute(route);
+        setActiveNav(nextRoute);
+        window.app?.setMenuOpen?.(false);
         const currentRoute = normalizeRoute(location.pathname);
 
         console.log(`Going to ${nextRoute}`);
