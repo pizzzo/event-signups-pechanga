@@ -7,6 +7,7 @@ import { EventsPage } from './pages/EventsPage.js';
 import { AboutPage } from './pages/AboutPage.js';
 import { EventDetailsPage } from './pages/EventDetailsPage.js';
 import { FeaturedCarousel } from './components/featuredCarousel.js';
+import { RegistrationPage } from './pages/RegistrationPage.js';
 
 window.app = {};
 app.router = Router;

@@ -72,6 +72,17 @@ const Router = {
                 }
                 break;
             default:
+                const regMatch = nextRoute.match(
+                    /^\/event\/([^/]+)\/register$/,
+                );
+                if (regMatch) {
+                    pageElement = document.createElement(
+                        'event-registration-page',
+                    );
+                    pageElement.dataset.id = regMatch[1];
+                    break;
+                }
+
                 if (nextRoute.startsWith('/event/')) {
                     pageElement = document.createElement('event-details-page');
                     const eventID = nextRoute.substring(

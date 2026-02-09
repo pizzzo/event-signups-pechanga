@@ -15,6 +15,12 @@ export class EventDetailsPage extends HTMLElement {
         const infoElement = this.querySelector('#eventInfo');
         const bodyElement = this.querySelector('#eventBody');
         const imgElement = this.querySelector('#eventImg');
+        const registerBtn = this.querySelector('#registerBtn');
+        const registerBtnMobile = this.querySelector('#registerBtnMobile');
+
+        const registerHref = `/event/${id}/register`;
+        if (registerBtn) registerBtn.href = registerHref;
+        if (registerBtnMobile) registerBtnMobile.href = registerHref;
 
         if (!event) {
             titleElement.textContent = 'Event not found';
