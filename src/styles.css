@@ -569,7 +569,7 @@
     gap: 0.75rem;
   }
 
-  .carousel-stage {
+  .carousel-selected {
     min-width: 0;
   }
 
@@ -600,7 +600,7 @@
     outline-offset: 2px;
   }
 
-  .carousel-meta {
+  .carousel-detail {
     margin-top: 0.75rem;
     color: hsl(0 0% 92% / 0.75);
     font-size: 0.9rem;
