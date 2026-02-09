@@ -8,7 +8,7 @@ export class EventCard extends HTMLElement {
         return this._event;
     }
 
-    connectCallback() {
+    connectedCallback() {
         if (this._event && !this.rendered) this.render();
     }
 
