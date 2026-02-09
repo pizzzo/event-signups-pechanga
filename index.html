@@ -37,7 +37,9 @@
         <a class="navlink" href="/events"
           ><img src="/src/assets/icons/calendar-24.svg" alt="" />Events</a
         >
-        <a class="navlink" href="/about">About</a>
+        <a class="navlink" href="/about"
+          ><img src="/src/assets/icons/info-24.svg" alt="" />About</a
+        >
       </nav>
     </aside>
     <!-- NOTE:(peter) - doing this for mobile backdrop -->
@@ -93,7 +95,39 @@
           <img id="eventImg" src="" alt="" />
           <h1 class="page-title" id="eventTitle"></h1>
           <p class="muted" id="eventInfo"></p>
+          <div class="event-actions">
+            <a href="" class="navlink btn btn-primary">Register now</a>
+          </div>
+          <div class="mobile-event-action" aria-hidden="false">
+            <a
+              href=""
+              class="navlink btn btn-primary mobile-event-action-btn"
+              id="registerBtnMobile"
+              >Register now</a
+            >
+          </div>
           <p id="eventBody"></p>
+        </div>
+      </section>
+    </template>
+
+    <template id="event-registration-page-template">
+      <section class="registration-page page">
+        <div class="container">
+          <a href="/events" class="navlink dark" id="regBackLink">Back</a>
+          <h1 class="page-title">Register</h1>
+          <p class="muted" id="regEventName"></p>
+
+          <form autocomplete="on" id="registrationForm" class="card">
+            <label>Full name<input name="fullName" required /></label>
+            <label>Email<input name="email" type="email" required /></label>
+            <label
+              >Guests<input name="guests" type="number" min="0" value="0"
+            /></label>
+            <button class="btn btn-primary" type="submit">
+              Submit registration
+            </button>
+          </form>
         </div>
       </section>
     </template>
@@ -131,7 +165,7 @@
 
     <!-- NOTE:(peter) - using aria-live polite need to test? -->
     <template id="featured-carousel-template">
-      <div class="carousel" role="region" aria-lable="Featured events carousel">
+      <div class="carousel" role="region" aria-label="Featured events carousel">
         <button
           class="carousel-btn prev"
           type="button"
