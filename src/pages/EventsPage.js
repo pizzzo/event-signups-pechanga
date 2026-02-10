@@ -15,11 +15,13 @@ export class EventsPage extends HTMLElement {
         this.listEl = this.querySelector('#eventsList');
 
         const renderList = () => {
+            // NOTE: (peter) - Events load in from state
             const { events, loading, error, eventSearch } = store.getState();
 
             const nextVal = eventSearch ?? '';
             if (this.input.value !== nextVal) this.input.value = nextVal;
 
+            // NOTE: (peter) - Loading message...
             if (loading) {
                 const p = document.createElement('p');
                 p.className = 'muted';
@@ -27,7 +29,7 @@ export class EventsPage extends HTMLElement {
                 this.listEl.replaceChildren(p);
                 return;
             }
-
+            // NOTE: (peter) - Error message...
             if (error) {
                 const p = document.createElement('p');
                 p.className = 'muted';
@@ -36,6 +38,7 @@ export class EventsPage extends HTMLElement {
                 return;
             }
 
+            // NOTE: (peter) - checking if events is an array, prepping for search filtering by user.
             const list = Array.isArray(events) ? events : [];
             const q = nextVal.trim().toLowerCase();
 
@@ -55,15 +58,17 @@ export class EventsPage extends HTMLElement {
                 return;
             }
 
+            // NOTE: (peter) - Recreates cards on new search. Document Fragment is faster according to reddit lol
             const frag = document.createDocumentFragment();
             for (const ev of filtered) {
                 const card = document.createElement('event-card');
-                card.event = ev;
+                card.myEvent = ev;
                 frag.appendChild(card);
             }
             this.listEl.replaceChildren(frag);
         };
 
+        // NOTE: (peter) - Might change, user input is stored in state to be maintained on page view change. Doesn't survive full reload though.:w
         this.input.addEventListener('input', (e) => {
             store.setState({ eventSearch: e.target.value });
         });
@@ -71,7 +76,6 @@ export class EventsPage extends HTMLElement {
         this.onStateChanged = renderList;
         window.addEventListener('state-changed', this.onStateChanged);
 
-        // initial render
         renderList();
     }
 

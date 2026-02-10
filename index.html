@@ -110,10 +110,12 @@
             >
           </div>
           <p id="eventBody"></p>
+          <registrants-list></registrants-list>
         </div>
       </section>
     </template>
 
+    <!-- EVENT REGISTRATION PAGE TEMPLATE -->
     <template id="event-registration-page-template">
       <section class="registration-page page">
         <div class="container">
@@ -188,7 +190,6 @@
       </article>
     </template>
 
-    <!-- NOTE:(peter) - using aria-live polite need to test? -->
     <template id="featured-carousel-template">
       <div class="carousel" role="region" aria-label="Featured events carousel">
         <button
@@ -198,7 +199,7 @@
         >
           <img src="src/assets/icons/arrow-back-24.svg" alt="Previous button" />
         </button>
-        <div class="carousel-selected" aria-live="polite"></div>
+        <div class="carousel-selected"></div>
         <button
           class="carousel-btn next"
           type="button"
@@ -212,13 +213,13 @@
       </div>
     </template>
 
-    <template>
-      <div class="registrants">
-        <div class="registrants-header">
+    <template id="registrants-list-template">
+      <div class="card stack">
+        <div class="cluster split">
           <h2 class="section-title">Registrants</h2>
-          <span class="muted registrants-count"></span>
+          <span class="muted" data-registrants-count></span>
         </div>
-        <div class="registrants-body"></div>
+        <div data-registrants-body></div>
       </div>
     </template>
   </body>

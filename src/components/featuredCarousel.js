@@ -56,8 +56,8 @@ export class FeaturedCarousel extends HTMLElement {
             if (this.counterEl) this.counterEl.textContent = '';
             return;
         }
-
-        // keep index in range
+        // NOTE: (peter) - https://www.reddit.com/r/learnjavascript/comments/10wbebj/use_modular_arithmetic_to_handle_lists_that_wrap/
+        // Seems to be working
         this.index = this.index % this.events.length;
         this.renderCard();
     }
@@ -74,7 +74,7 @@ export class FeaturedCarousel extends HTMLElement {
         if (!ev || !this.selected) return;
 
         const card = document.createElement('event-card');
-        card.event = ev;
+        card.myEvent = ev; // NOTE: (peter) - sets myEvent in EventCard component.
         card.classList.add('carousel-card');
         this.selected.replaceChildren(card);
 

@@ -11,6 +11,7 @@ import { EventDetailsPage } from './pages/EventDetailsPage.js';
 import { FeaturedCarousel } from './components/featuredCarousel.js';
 import { RegistrationPage } from './pages/RegistrationPage.js';
 import { EventCard } from './components/eventCard.js';
+import { RegistrantsList } from './components/registrantsList.js';
 
 window.app = {};
 app.router = Router;

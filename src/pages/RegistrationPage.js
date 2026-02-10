@@ -24,7 +24,7 @@ export class RegistrationPage extends HTMLElement {
 
         this.replaceChildren(template.content.cloneNode(true));
 
-        const id = this.dataset.id;
+        const id = this.dataset.id; // NOTE: (peter) - assigns id from dataset that was filled during routing.
 
         const { events } = store.getState();
         if (!events) {
@@ -77,7 +77,7 @@ export class RegistrationPage extends HTMLElement {
 
                 const created = await api.createRegistrant(payload);
 
-                // NOTE: (peter) - might change this api.getRegistrants -> store.setState (WIP)
+                // TODO: (peter) - might change this api.getRegistrants -> store.setState (WIP)
                 const { registrants } = store.getState();
                 store.setState({
                     registrants: [...(registrants ?? []), created],

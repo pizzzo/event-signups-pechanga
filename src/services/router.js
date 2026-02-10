@@ -72,6 +72,7 @@ const Router = {
                 }
                 break;
             default:
+                // NOTE: (peter) - This looks crazy, regex to display /event/:_id/register route.
                 const regMatch = nextRoute.match(
                     /^\/event\/([^/]+)\/register$/,
                 );
@@ -79,7 +80,7 @@ const Router = {
                     pageElement = document.createElement(
                         'event-registration-page',
                     );
-                    pageElement.dataset.id = regMatch[1];
+                    pageElement.dataset.id = regMatch[1]; // NOTE: (peter) - stores id in element dataset to be used down the line.
                     break;
                 }
 
@@ -88,7 +89,7 @@ const Router = {
                     const eventID = nextRoute.substring(
                         nextRoute.lastIndexOf('/') + 1,
                     );
-                    pageElement.dataset.id = eventID;
+                    pageElement.dataset.id = eventID; // NOTE: (peter) - stores id in element dataset to be used with cards.
                 }
         }
         if (pageElement) {

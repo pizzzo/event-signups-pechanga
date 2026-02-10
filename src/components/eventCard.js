@@ -1,10 +1,10 @@
 // TODO: (peter) - make use of templates rather than using innerHTML.
 export class EventCard extends HTMLElement {
-    set event(value) {
+    set myEvent(value) {
         this._event = value;
         this.render();
     }
-    get event() {
+    get myEvent() {
         return this._event;
     }
 

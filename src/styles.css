@@ -491,7 +491,6 @@
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    filter: saturate(1.25) contrast(1.02);
   }
 
   .event-card-body {
@@ -690,11 +689,37 @@
       display: none;
     }
   }
+
+  .registrant-row {
+    padding: 0.75rem;
+    border-radius: var(--border-radius-2);
+    background: hsl(0 0% 100% / 0.03);
+  }
+
+  .registrant-info {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .registrant-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .registrant-edit-form {
+    display: grid;
+    gap: 0.75rem;
+  }
+
 }
 
 
 
 @layer utilities {
+
+  /*NOTE:(peter) - Utils from kevin powell & andy bell*/
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -712,6 +737,27 @@
 
   .page {
     padding-block: 1.25rem;
+  }
+
+  .stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stack-sm {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .split {
+    justify-content: space-between;
   }
 
 }
