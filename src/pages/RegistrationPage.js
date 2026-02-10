@@ -45,7 +45,7 @@ export class RegistrationPage extends HTMLElement {
         const form = this.querySelector('#registrationForm');
         const submitBtn = form?.querySelector('button[type="submit"]');
 
-        form?.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const fd = new FormData(form);
@@ -62,15 +62,17 @@ export class RegistrationPage extends HTMLElement {
 
             const payload = {
                 eventId: id,
+                eventTitle: event?.title ?? '',
                 fullName,
                 email,
                 guests,
-                ...(notes ? { notes } : {}),
+                notes: notes || '',
+                createdAt: new Date().toISOString(),
             };
 
             try {
                 submitBtn?.setAttribute('disabled', 'true');
-                submitBtn && (submitBtn.textContent = 'Submitting...');
+                if (submitBtn) submitBtn.textContent = 'Submitting...';
 
                 const created = await api.createRegistrant(payload);
 
@@ -79,16 +81,12 @@ export class RegistrationPage extends HTMLElement {
                 store.setState({
                     registrants: [...(registrants ?? []), created],
                 });
-
-                form.reset();
-
-                // Navigate back to the event details page
                 window.app?.router?.go?.(`/event/${id}`);
             } catch (err) {
                 alert(err?.message || 'Failed to submit registration.');
             } finally {
                 submitBtn?.removeAttribute('disabled');
-                submitBtn && (submitBtn.textContent = 'Submit registration');
+                if (submitBtn) submitBtn.textContent = 'Submit registration';
             }
         });
     }

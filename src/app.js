@@ -14,7 +14,9 @@ import { EventCard } from './components/eventCard.js';
 
 window.app = {};
 app.router = Router;
+//NOTE: (peter) - exposing to window for console testing.
 app.store = store;
+app.api = api;
 
 window.addEventListener('DOMContentLoaded', () => {
     loadEvents();
@@ -44,14 +46,3 @@ window.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') setMenuOpen(false);
     });
 });
-// api.deleteRegistrant('698ab2a33b8cf603e813961c')
-//     .then((registrants) => console.log('Registrants deleted:', registrants))
-//     .catch((err) => console.error('API error:', err.message));
-//
-// api.listEvents()
-//     .then((events) => console.log('Events: ', events))
-//     .catch((err) => console.error('API error:', err.message));
-//
-// api.listRegistrants()
-//     .then((registrants) => console.log('Registrants: ', registrants))
-//     .catch((err) => console.error('API error:', err.message));
