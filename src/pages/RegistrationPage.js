@@ -33,6 +33,7 @@ export class RegistrationPage extends HTMLElement {
         const event = events.find((e) => e._id === id) || null;
 
         const regEventName = this.querySelector('#regEventName');
+        // FIXME: (peter) - currently displays id rather than title on reload. Need to hydrate title on reload?
         if (regEventName) {
             regEventName.textContent = event
                 ? `Event: ${event.title}`

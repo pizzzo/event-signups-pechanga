@@ -444,6 +444,7 @@
     background: hsl(0 0% 14% / 0.9);
     color: hsl(0 0% 92% / 0.85);
     padding: 1rem var(--gutter);
+    z-index: 1;
   }
 
   /* EVENTS LIST STYLES */
@@ -490,7 +491,7 @@
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    filter: saturate(1.05) contrast(1.02);
+    filter: saturate(1.25) contrast(1.02);
   }
 
   .event-card-body {

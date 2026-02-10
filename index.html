@@ -65,6 +65,7 @@
       <section class="home-page page">
         <div class="container">
           <h1 class="page-title">Featured Events</h1>
+          <h2>Test</h2>
           <featured-carousel></featured-carousel>
         </div>
       </section>
@@ -121,8 +122,21 @@
           <p class="muted" id="regEventName"></p>
 
           <form autocomplete="on" id="registrationForm" class="card">
-            <label>Full name<input name="fullName" placeholder="John Pechanga" required /></label>
-            <label>Email<input name="email" type="email" placeholder="jp@pechanga.com" required /></label>
+            <label
+              >Full name<input
+                name="fullName"
+                placeholder="John Pechanga"
+                required
+            /></label>
+            <label
+              >Email
+              <input
+                name="email"
+                type="email"
+                placeholder="jp@pechanga.com"
+                autocomplete="off"
+                required
+            /></label>
             <label
               >Guests<input
                 name="guests"
@@ -133,10 +147,7 @@
             /></label>
             <label>
               Notes
-              <input
-                name="notes"
-                placeholder="Optional notes..."
-              ></input>
+              <input name="notes" placeholder="Optional notes..." />
             </label>
             <button class="btn btn-primary" type="submit">
               Submit registration
@@ -198,6 +209,16 @@
       </div>
       <div class="carousel-detail">
         <span class="carousel-count"></span>
+      </div>
+    </template>
+
+    <template>
+      <div class="registrants">
+        <div class="registrants-header">
+          <h2 class="section-title">Registrants</h2>
+          <span class="muted registrants-count"></span>
+        </div>
+        <div class="registrants-body"></div>
       </div>
     </template>
   </body>

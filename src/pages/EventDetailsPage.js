@@ -1,5 +1,6 @@
 import { store } from '../services/state.js';
 import { loadEvents } from '../services/data.js';
+import { api } from '../api/api.js';
 
 // NOTE: (peter) - Flow is going to be -> Build from template -> renderFromState will then getState -> display Loading... -> once state is read
 // it will render to the screen event details. EventDetail page links to -> form submission.
@@ -19,17 +20,23 @@ export class EventDetailsPage extends HTMLElement {
         this.bodyElement = this.querySelector('#eventBody');
         this.imgElement = this.querySelector('#eventImg');
 
-        this.registerBtn = this.querySelector('#registerBtn');
-        this.registerBtnMobile = this.querySelector('#registerBtnMobile');
+        this.registrantsList = this.querySelector('registrants-list');
 
         const registerHref = `/event/${this.id}/register`;
-        if (this.registerBtn) this.registerBtn.href = registerHref;
-        if (this.registerBtnMobile) this.registerBtnMobile.href = registerHref;
+        this.querySelector('#registerBtn')?.setAttribute('href', registerHref);
+        this.querySelector('#registerBtnMobile')?.setAttribute(
+            'href',
+            registerHref,
+        );
 
         this.onStateChanged = () => this.renderFromState();
         window.addEventListener('state-changed', this.onStateChanged);
 
-        loadEvents().finally(() => this.renderFromState());
+        loadEvents().finally(() => {
+            this.renderFromState();
+            this.loadRegistrants();
+        });
+
         this.renderFromState();
     }
 
@@ -42,27 +49,17 @@ export class EventDetailsPage extends HTMLElement {
 
         if (loading) {
             this.titleElement.textContent = 'Loading...';
-            this.infoElement.textContent = '';
-            this.bodyElement.textContent = '';
-            if (this.imgElement) this.imgElement.removeAttribute('src');
             return;
         }
-
         if (error) {
             this.titleElement.textContent = 'Error';
             this.infoElement.textContent = error;
-            this.bodyElement.textContent = '';
-            if (this.imgElement) this.imgElement.removeAttribute('src');
             return;
         }
 
         const event = (events || []).find((e) => e._id === this.id);
-
         if (!event) {
             this.titleElement.textContent = 'Event not found';
-            this.infoElement.textContent = this.id ? `id: ${this.id}` : '';
-            this.bodyElement.textContent = '';
-            if (this.imgElement) this.imgElement.removeAttribute('src');
             return;
         }
 
@@ -70,6 +67,22 @@ export class EventDetailsPage extends HTMLElement {
         this.infoElement.textContent = `${event.date} - ${event.location}`;
         this.bodyElement.textContent = event.description || '';
         if (this.imgElement) this.imgElement.src = event.imageUrl || '';
+    }
+
+    async loadRegistrants() {
+        try {
+            const all = await api.listRegistrants();
+            const list = Array.isArray(all) ? all : [];
+            store.setState({ registrants: list });
+
+            this.registrantsList &&
+                (this.registrantsList.data = {
+                    registrants: list,
+                    eventId: this.id,
+                });
+        } catch (err) {
+            console.error(err);
+        }
     }
 }
 
