@@ -1,5 +1,3 @@
-import { getEventById } from '../services/eventsTest.js';
-
 export class RegistrationPage extends HTMLElement {
     connectedCallback() {
         if (this.rendered) return;

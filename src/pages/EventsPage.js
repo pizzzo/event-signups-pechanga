@@ -1,5 +1,4 @@
 import { store } from '../services/state.js';
-import { listEvents } from '../services/eventsTest.js';
 import { EventCard } from '../components/eventCard.js';
 
 const DEMO_EVENTS = listEvents();

@@ -1,5 +1,3 @@
-import { listEvents } from '../services/eventsTest.js';
-
 export class FeaturedCarousel extends HTMLElement {
     connectedCallback() {
         if (this.rendered) return;

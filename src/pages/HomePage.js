@@ -1,5 +1,3 @@
-import { listEvents } from '../services/eventsTest.js';
-
 export class HomePage extends HTMLElement {
     connectedCallback() {
         if (this.rendered) return;

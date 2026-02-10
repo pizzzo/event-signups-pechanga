@@ -1,5 +1,6 @@
 import Router from './services/router.js';
 import { store } from './services/state.js';
+import { api } from './api/api.js';
 
 // NOTE: (peter) - Importing my custom web components
 import { HomePage } from './pages/HomePage.js';
@@ -40,3 +41,11 @@ window.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') setMenuOpen(false);
     });
 });
+
+api.listEvents()
+    .then((events) => console.log('Events: ', events))
+    .catch((err) => console.error('API error:', err.message));
+
+api.listRegistrants()
+    .then((registrants) => console.log('Registrants: ', registrants))
+    .catch((err) => console.error('API error:', err.message));
