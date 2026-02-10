@@ -629,6 +629,66 @@
       right: 0.5rem;
     }
   }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+
+    font-weight: 650;
+    border: 1px solid var(--border-subtle);
+
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    color: hsl(0 0% 10%);
+    background: linear-gradient(to right, var(--clr-gold-100), var(--brand));
+    border-color: hsl(47 67% 90% / 0.35);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.03);
+  }
+
+  .event-actions {
+    margin: 1rem 0 1.25rem;
+  }
+
+  .mobile-event-action {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 0.75rem;
+    background: hsl(0 0% 10% / 0.55);
+    backdrop-filter: blur(10px);
+
+    border-top: 1px solid var(--border-subtle);
+    z-index: 80;
+  }
+
+  .mobile-event-action-btn {
+    width: min(var(--container), 100% - (var(--gutter) * 2));
+    margin-inline: auto;
+  }
+
+  @media (width > 900px) {
+    .mobile-event-action {
+      display: none;
+    }
+  }
+
+  @media (width < 900px) {
+    #registerBtn {
+      display: none;
+    }
+  }
 }
 
 

@@ -124,7 +124,12 @@
             <label>Full name<input name="fullName" required /></label>
             <label>Email<input name="email" type="email" required /></label>
             <label
-              >Guests<input name="guests" type="number" min="0" value="0"
+              >Guests<input
+                name="guests"
+                type="number"
+                min="0"
+                max="5"
+                value="0"
             /></label>
             <button class="btn btn-primary" type="submit">
               Submit registration
@@ -172,13 +177,17 @@
           class="carousel-btn prev"
           type="button"
           aria-label="Previous featured event"
-        ></button>
+        >
+          <img src="src/assets/icons/arrow-back-24.svg" alt="Previous button" />
+        </button>
         <div class="carousel-selected" aria-live="polite"></div>
         <button
           class="carousel-btn next"
           type="button"
           aria-label="Next featured event"
-        ></button>
+        >
+          <img src="src/assets/icons/arrow-forward-24.svg" alt="Next button" />
+        </button>
       </div>
       <div class="carousel-detail">
         <span class="carousel-count"></span>
