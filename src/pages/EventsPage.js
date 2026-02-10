@@ -1,10 +1,7 @@
 import { store } from '../services/state.js';
-import { EventCard } from '../components/eventCard.js';
-
-const DEMO_EVENTS = listEvents();
+import { loadEvents } from '../services/data.js';
 
 export class EventsPage extends HTMLElement {
-    // NOTE: (peter) - Updated this to maintain form input even on page change. Should only clear if submitted. Clears on tab close or if leaving site though.
     connectedCallback() {
         if (this.rendered) return;
         this.rendered = true;
@@ -16,21 +13,40 @@ export class EventsPage extends HTMLElement {
         this.listEl = this.querySelector('#eventsList');
 
         const renderList = () => {
-            const { eventSearch } = store.getState();
+            // NOTE: (peter) - pulling data from state.js that was initially retrieved from API.
+            // Intent is to not call API on element load, only one call on inital site load.
+            const { events, loading, error, eventSearch } = store.getState();
+
             const nextVal = eventSearch ?? '';
             if (this.input.value !== nextVal) this.input.value = nextVal;
+
+            if (loading) {
+                const p = document.createElement('p');
+                p.className = 'muted';
+                p.textContent = 'Loading events...';
+                this.listEl.replaceChildren(p);
+                return;
+            }
+
+            if (error) {
+                const p = document.createElement('p');
+                p.className = 'muted';
+                p.textContent = `Error: ${error}`;
+                this.listEl.replaceChildren(p);
+                return;
+            }
 
             const q = nextVal.trim().toLowerCase();
 
             const filtered = q
-                ? DEMO_EVENTS.filter((ev) => {
+                ? events.filter((ev) => {
                       const match =
-                          `${ev.title} ${ev.location} ${ev.date}`.toLowerCase();
+                          `${ev.title} ${ev.description ?? ''} ${ev.location} ${ev.date}`.toLowerCase();
                       return match.includes(q);
                   })
-                : DEMO_EVENTS;
+                : events;
 
-            if (filtered.length === 0) {
+            if (!filtered || filtered.length === 0) {
                 const empty = document.createElement('p');
                 empty.className = 'muted';
                 empty.textContent = 'No events match your search.';
@@ -38,13 +54,23 @@ export class EventsPage extends HTMLElement {
                 return;
             }
 
-            this.listEl.replaceChildren(
-                ...filtered.map((ev) => {
-                    const card = document.createElement('event-card');
-                    card.event = ev;
-                    return card;
-                }),
-            );
+            // NOTE: (peter) - trying out doc fragments, similar to what was used in a frontendmasters course. Not needed since the events I'm gettings only total to 3.
+            // However just want to practice not forcing any DOM changes when creating the list.
+            const frag = document.createDocumentFragment();
+            for (const ev of filtered) {
+                const card = document.createElement('event-card');
+                card.event = ev;
+                frag.appendChild(card);
+            }
+            this.listEl.replaceChildren(frag);
+            // OLD - map
+            // this.listEl.replaceChildren(
+            //     ...filtered.map((ev) => {
+            //         const card = document.createElement('event-card');
+            //         card.event = ev;
+            //         return card;
+            //     }),
+            // );
         };
 
         this.input.addEventListener('input', (e) => {
@@ -53,8 +79,12 @@ export class EventsPage extends HTMLElement {
 
         this.onStateChanged = () => renderList();
         window.addEventListener('state-changed', this.onStateChanged);
+
+        // NOTE: (peter) - Attemps to load events from state and eventually render to page.
+        loadEvents().finally(renderList);
         renderList();
     }
+
     disconnectedCallback() {
         window.removeEventListener('state-changed', this.onStateChanged);
     }
