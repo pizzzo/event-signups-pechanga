@@ -121,8 +121,8 @@
           <p class="muted" id="regEventName"></p>
 
           <form autocomplete="on" id="registrationForm" class="card">
-            <label>Full name<input name="fullName" required /></label>
-            <label>Email<input name="email" type="email" required /></label>
+            <label>Full name<input name="fullName" placeholder="John Pechanga" required /></label>
+            <label>Email<input name="email" type="email" placeholder="jp@pechanga.com" required /></label>
             <label
               >Guests<input
                 name="guests"
@@ -131,6 +131,13 @@
                 max="5"
                 value="0"
             /></label>
+            <label>
+              Notes
+              <input
+                name="notes"
+                placeholder="Optional notes..."
+              ></input>
+            </label>
             <button class="btn btn-primary" type="submit">
               Submit registration
             </button>

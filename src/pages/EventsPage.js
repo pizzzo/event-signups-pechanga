@@ -1,5 +1,7 @@
 import { store } from '../services/state.js';
-import { loadEvents } from '../services/data.js';
+//
+// NOTE: (peter) - Flow is going to be -> Build from template -> renderFromState will then getState -> display Loading... -> once state is read
+// it will render to the screen event cards w/ data from state. Each card links to their respective "EventDetailPage".
 
 export class EventsPage extends HTMLElement {
     connectedCallback() {
@@ -13,8 +15,6 @@ export class EventsPage extends HTMLElement {
         this.listEl = this.querySelector('#eventsList');
 
         const renderList = () => {
-            // NOTE: (peter) - pulling data from state.js that was initially retrieved from API.
-            // Intent is to not call API on element load, only one call on inital site load.
             const { events, loading, error, eventSearch } = store.getState();
 
             const nextVal = eventSearch ?? '';
@@ -36,17 +36,18 @@ export class EventsPage extends HTMLElement {
                 return;
             }
 
+            const list = Array.isArray(events) ? events : [];
             const q = nextVal.trim().toLowerCase();
 
             const filtered = q
-                ? events.filter((ev) => {
+                ? list.filter((ev) => {
                       const match =
                           `${ev.title} ${ev.description ?? ''} ${ev.location} ${ev.date}`.toLowerCase();
                       return match.includes(q);
                   })
-                : events;
+                : list;
 
-            if (!filtered || filtered.length === 0) {
+            if (filtered.length === 0) {
                 const empty = document.createElement('p');
                 empty.className = 'muted';
                 empty.textContent = 'No events match your search.';
@@ -54,8 +55,6 @@ export class EventsPage extends HTMLElement {
                 return;
             }
 
-            // NOTE: (peter) - trying out doc fragments, similar to what was used in a frontendmasters course. Not needed since the events I'm gettings only total to 3.
-            // However just want to practice not forcing any DOM changes when creating the list.
             const frag = document.createDocumentFragment();
             for (const ev of filtered) {
                 const card = document.createElement('event-card');
@@ -63,25 +62,16 @@ export class EventsPage extends HTMLElement {
                 frag.appendChild(card);
             }
             this.listEl.replaceChildren(frag);
-            // OLD - map
-            // this.listEl.replaceChildren(
-            //     ...filtered.map((ev) => {
-            //         const card = document.createElement('event-card');
-            //         card.event = ev;
-            //         return card;
-            //     }),
-            // );
         };
 
         this.input.addEventListener('input', (e) => {
             store.setState({ eventSearch: e.target.value });
         });
 
-        this.onStateChanged = () => renderList();
+        this.onStateChanged = renderList;
         window.addEventListener('state-changed', this.onStateChanged);
 
-        // NOTE: (peter) - Attemps to load events from state and eventually render to page.
-        loadEvents().finally(renderList);
+        // initial render
         renderList();
     }
 

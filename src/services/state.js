@@ -4,6 +4,7 @@ export const state = {
     registrants: [],
     loading: false,
     error: null,
+    eventSearch: '',
 };
 
 function getState() {

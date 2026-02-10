@@ -1,6 +1,7 @@
 import Router from './services/router.js';
 import { store } from './services/state.js';
 import { api } from './api/api.js';
+import { loadEvents } from './services/data.js';
 
 // NOTE: (peter) - Importing my custom web components
 import { HomePage } from './pages/HomePage.js';
@@ -9,12 +10,14 @@ import { AboutPage } from './pages/AboutPage.js';
 import { EventDetailsPage } from './pages/EventDetailsPage.js';
 import { FeaturedCarousel } from './components/featuredCarousel.js';
 import { RegistrationPage } from './pages/RegistrationPage.js';
+import { EventCard } from './components/eventCard.js';
 
 window.app = {};
 app.router = Router;
 app.store = store;
 
 window.addEventListener('DOMContentLoaded', () => {
+    loadEvents();
     app.router.init();
 
     const menuBtn = document.querySelector('.menu-button');
@@ -41,11 +44,14 @@ window.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') setMenuOpen(false);
     });
 });
-
-api.listEvents()
-    .then((events) => console.log('Events: ', events))
-    .catch((err) => console.error('API error:', err.message));
-
-api.listRegistrants()
-    .then((registrants) => console.log('Registrants: ', registrants))
-    .catch((err) => console.error('API error:', err.message));
+// api.deleteRegistrant('698ab2a33b8cf603e813961c')
+//     .then((registrants) => console.log('Registrants deleted:', registrants))
+//     .catch((err) => console.error('API error:', err.message));
+//
+// api.listEvents()
+//     .then((events) => console.log('Events: ', events))
+//     .catch((err) => console.error('API error:', err.message));
+//
+// api.listRegistrants()
+//     .then((registrants) => console.log('Registrants: ', registrants))
+//     .catch((err) => console.error('API error:', err.message));

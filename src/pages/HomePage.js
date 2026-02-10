@@ -1,3 +1,4 @@
+// NOTE: (peter) - Simple page, template contains <featured-carousel> element, that does all the heavy lifting on this page.
 export class HomePage extends HTMLElement {
     connectedCallback() {
         if (this.rendered) return;
