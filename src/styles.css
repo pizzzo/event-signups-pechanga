@@ -683,36 +683,32 @@ textarea:focus {
   margin: 1rem 0 1.25rem;
 }
 
-.mobile-event-action {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+/*TODO:(peter) MAY DELETE? */
+/* .mobile-event-action { */
+/*   position: fixed; */
+/*   left: 0; */
+/*   right: 0; */
+/*   bottom: 0; */
+/**/
+/*   padding: 0.75rem; */
+/*   background: hsl(0 0% 10% / 0.55); */
+/*   backdrop-filter: blur(10px); */
+/**/
+/*   border-top: 1px solid var(--border); */
+/*   z-index: 80; */
+/* } */
+/**/
+/* .mobile-event-action-btn { */
+/*   width: min(var(--container), 100% - (var(--gutter) * 2)); */
+/*   margin-inline: auto; */
+/* } */
+/**/
+/* @media (width > 900px) { */
+/*   .mobile-event-action { */
+/*     display: none; */
+/*   } */
+/* } */
 
-  padding: 0.75rem;
-  background: hsl(0 0% 10% / 0.55);
-  backdrop-filter: blur(10px);
-
-  border-top: 1px solid var(--border);
-  z-index: 80;
-}
-
-.mobile-event-action-btn {
-  width: min(var(--container), 100% - (var(--gutter) * 2));
-  margin-inline: auto;
-}
-
-@media (width > 900px) {
-  .mobile-event-action {
-    display: none;
-  }
-}
-
-@media (width < 900px) {
-  #registerBtn {
-    display: none;
-  }
-}
 
 /* =========================
    REGISTRANTS LIST

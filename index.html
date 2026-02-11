@@ -205,19 +205,25 @@
       </div>
     </template>
 
-    <div class="cluster split registrants-head">
-      <h2 class="section-title">Registrants</h2>
+    <template id="registrants-list-template">
+      <div class="card stack">
+        <div class="cluster split registrants-head">
+          <h2 class="section-title">Registrants</h2>
 
-      <div class="cluster registrants-actions">
-        <button
-          type="button"
-          class="btn btn-primary btn-sm"
-          data-registrants-add
-        >
-          + Add
-        </button>
-        <span class="muted" data-registrants-count></span>
+          <div class="cluster registrants-actions">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              data-registrants-add
+            >
+              + Add
+            </button>
+            <span class="muted" data-registrants-count></span>
+          </div>
+        </div>
+
+        <div data-registrants-body></div>
       </div>
-    </div>
+    </template>
   </body>
 </html>

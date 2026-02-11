@@ -23,13 +23,6 @@ export class EventDetailsPage extends HTMLElement {
         //NOTE: (peter) -My custom registrants list element
         this.registrantsList = this.querySelector('registrants-list');
 
-        const registerHref = `/event/${this.id}/register`;
-        this.querySelector('#registerBtn')?.setAttribute('href', registerHref);
-        this.querySelector('#registerBtnMobile')?.setAttribute(
-            'href',
-            registerHref,
-        );
-
         this.onStateChanged = () => {
             this.renderFromState();
             this.syncRegistrants();
@@ -39,6 +32,7 @@ export class EventDetailsPage extends HTMLElement {
         // NOTE: (peter) - custom eventListeners
         this.addEventListener('registrant-delete', this.onRegistrantDelete);
         this.addEventListener('registrant-save', this.onRegistrantSave);
+        this.addEventListener('registrant-create', this.onRegistrantCreate);
 
         loadEvents().finally(() => {
             this.renderFromState();
@@ -53,6 +47,7 @@ export class EventDetailsPage extends HTMLElement {
         window.removeEventListener('state-changed', this.onStateChanged);
         this.removeEventListener('registrant-delete', this.onRegistrantDelete);
         this.removeEventListener('registrant-save', this.onRegistrantSave);
+        this.removeEventListener('registrant-create', this.onRegistrantCreate);
     }
 
     renderFromState() {
@@ -98,6 +93,39 @@ export class EventDetailsPage extends HTMLElement {
             store.setState({ registrants: list });
         } catch (err) {
             console.error(err);
+        }
+    }
+
+    async onRegistrantCreate(e) {
+        const registrant = e.detail?.registrant;
+        if (!registrant) return;
+
+        const payload = {
+            eventId: this.id,
+            eventTitle: '',
+            fullName: String(registrant.fullName || '').trim(),
+            email: String(registrant.email || '').trim(),
+            guests: Number(registrant.guests ?? 0),
+            notes: String(registrant.notes || '').trim(),
+            createdAt: new Date().toISOString(),
+        };
+
+        if (!payload.fullName) return alert('Name required.');
+        if (!payload.email) return alert('Email required.');
+
+        const { events, registrants } = store.getState();
+        const event = (events || []).find((ev) => ev._id === this.id);
+        if (event) payload.eventTitle = event.title;
+
+        try {
+            const created = await api.createRegistrant(payload);
+
+            // NOTE: (peter) - want to store my registrant in my state obj.
+            store.setState({
+                registrants: [created, ...(registrants || [])],
+            });
+        } catch (err) {
+            alert(err?.message || 'Create failed');
         }
     }
 
