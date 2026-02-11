@@ -83,9 +83,42 @@
         <div class="container">
           <div class="event-head">
             <h1 class="event-title">Featured Events</h1>
-            <form class="search-bar" autocomplete="on">
-              <input name="q" placeholder="Search title or description" />
-            </form>
+            <div class="events-toolbar">
+              <button
+                class="btn btn-sm"
+                type="button"
+                id="filterBtn"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                &#9881; Filter
+              </button>
+
+              <div class="filter-menu" id="filterMenu" hidden>
+                <label class="field">
+                  Category
+                  <select id="categoryFilter">
+                    <option value="">All</option>
+                  </select>
+                </label>
+
+                <label class="field">
+                  Location
+                  <select id="locationFilter">
+                    <option value="">All</option>
+                  </select>
+                </label>
+                <div class="cluster">
+                  <button type="button" class="btn btn-sm" id="clearFilterBtn">
+                    Clear
+                  </button>
+                </div>
+              </div>
+
+              <form class="search-bar" autocomplete="on">
+                <input name="q" placeholder="Search..." />
+              </form>
+            </div>
           </div>
           <div class="event-gutter"><div id="eventsList"></div></div>
         </div>
@@ -96,7 +129,7 @@
     <template id="event-details-template">
       <section class="event-details-page page">
         <div class="container">
-          <a href="/events" class="navlink dark">Back to Events</a>
+          <a href="/events" class="navlink dark back-button">Back to Events</a>
           <img id="eventImg" src="" alt="" />
           <h1 class="page-title" id="eventTitle"></h1>
           <p class="muted" id="eventInfo"></p>
@@ -224,6 +257,10 @@
 
         <div data-registrants-body></div>
       </div>
+    </template>
+
+    <template id="select-option-template">
+      <option value=""></option>
     </template>
   </body>
 </html>

@@ -417,6 +417,49 @@ textarea:focus {
   margin-bottom: 1.25rem;
 }
 
+.events-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.filter-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 200px;
+  width: 260px;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: hsl(0 0% 12% / 0.95);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  z-index: 30;
+}
+
+.filter-menu .field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.filter-menu select {
+  width: 100%;
+}
+
+@media (width <=760px) {
+  .events-toolbar {
+    justify-content: space-between;
+  }
+
+  .filter-menu {
+    right: 0;
+    width: min(90vw, 320px)
+  }
+}
+
+
 .search-bar {
   /* NOTE:(peter) unhide for fancy search bar enclosure. */
   /* border-radius: var(--radius); */
@@ -427,6 +470,7 @@ textarea:focus {
   justify-self: end;
 
 }
+
 
 @media (width > 760px) {
   .filters {
