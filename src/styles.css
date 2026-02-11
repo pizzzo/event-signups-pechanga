@@ -388,6 +388,7 @@ textarea {
   color: var(--text);
 }
 
+/* NOTE:(peter) This resolves the iOS Safari zoom issue on input. */
 @media (max-width: 768px) {
 
   input,
@@ -417,6 +418,7 @@ textarea:focus {
 }
 
 .search-bar {
+  /* NOTE:(peter) unhide for fancy search bar enclosure. */
   /* border-radius: var(--radius); */
   /* background: hsl(0 0% 100% / 0.04); */
   /* border: 1px solid var(--border); */
@@ -478,6 +480,18 @@ textarea:focus {
 .btn-primary:hover {
   filter: brightness(1.03);
 }
+
+
+.btn-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+
+.registrants-actions {
+  gap: 0.5rem;
+}
+
 
 /* =========================
    EVENTS GRID + CARDS
@@ -713,6 +727,16 @@ textarea:focus {
 #eventBody {
   margin-block: 1rem;
 }
+
+
+.registrants-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 
 .registrant-row {
   padding: 0.75rem;

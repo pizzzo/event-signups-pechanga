@@ -100,19 +100,7 @@
           <img id="eventImg" src="" alt="" />
           <h1 class="page-title" id="eventTitle"></h1>
           <p class="muted" id="eventInfo"></p>
-          <div class="event-actions">
-            <a href="" class="navlink btn btn-primary" id="registerBtn"
-              >Register now</a
-            >
-          </div>
-          <div class="mobile-event-action" aria-hidden="false">
-            <a
-              href=""
-              class="navlink btn btn-primary mobile-event-action-btn"
-              id="registerBtnMobile"
-              >Register now</a
-            >
-          </div>
+          <div class="event-actions"></div>
           <p id="eventBody"></p>
           <registrants-list></registrants-list>
         </div>
@@ -217,14 +205,19 @@
       </div>
     </template>
 
-    <template id="registrants-list-template">
-      <div class="card stack">
-        <div class="cluster split">
-          <h2 class="section-title">Registrants</h2>
-          <span class="muted" data-registrants-count></span>
-        </div>
-        <div data-registrants-body></div>
+    <div class="cluster split registrants-head">
+      <h2 class="section-title">Registrants</h2>
+
+      <div class="cluster registrants-actions">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          data-registrants-add
+        >
+          + Add
+        </button>
+        <span class="muted" data-registrants-count></span>
       </div>
-    </template>
+    </div>
   </body>
 </html>
