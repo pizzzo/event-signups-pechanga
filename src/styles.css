@@ -69,6 +69,22 @@ a {
   --sidebar-width: 300px;
 }
 
+body.theme-light {
+  /* Theme */
+  --bg: hsl(0 0% 96%);
+  --panel: hsl(0 0% 100%);
+  --panel-2: hsl(0 0% 98%);
+  --border: hsl(0 0% 0% / 0.10);
+  --text: hsl(0 0% 10%);
+  --muted: hsl(0 0% 92% / 0.75);
+
+  --brand: hsl(44 77% 60%);
+  --brand-2: hsl(47 67% 85%);
+
+  --shadow: 0 12px 40px hsl(0 0% 0% / 0.35);
+
+}
+
 html {
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.6;
@@ -250,7 +266,7 @@ a:focus-visible {
 
 
 /* =========================
-   SIDEBAR + MOBILE DRAWER
+   SIDEBAR + MOBILE DRAWER 
 ========================= */
 .site-side-bar {
   background: linear-gradient(to bottom, hsl(0 0% 14% / 0.95), hsl(0 0% 12% / 0.95));
@@ -335,7 +351,7 @@ body[data-menu-open="true"] {
 }
 
 /* =========================
-   MAIN + FOOTER
+   MAIN + FOOTER main elements
 ========================= */
 .site-main {
   grid-area: main;
@@ -352,7 +368,7 @@ body[data-menu-open="true"] {
 }
 
 /* =========================
-   TYPOGRAPHY + TEXTURE
+   TYPOGRAPHY + TEXTURE need to work on this more.
 ========================= */
 .page-title {
   font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
@@ -367,7 +383,7 @@ body[data-menu-open="true"] {
 }
 
 /* =========================
-   FORMS
+   FORMS my forms and input fields
 ========================= */
 label {
   display: block;
@@ -421,8 +437,12 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.6rem;
+  gap: 0.2rem;
   position: relative;
+}
+
+#filterBtn {
+  border-radius: 1px 1px 15px 15px;
 }
 
 .filter-menu {
@@ -469,6 +489,16 @@ textarea:focus {
   max-width: 280px;
   justify-self: end;
 
+}
+
+/*  NOTE:(peter) - bad but ran out of time to properly use color palette. */
+
+#categoryFilter>option {
+  background-color: hsl(0 0% 12% / 0.95);
+}
+
+#locationFilter>option {
+  background-color: hsl(0 0% 12% / 0.95);
 }
 
 
@@ -607,6 +637,7 @@ textarea:focus {
   object-fit: cover;
 }
 
+
 .event-card-body {
   padding: 0.9rem 0.95rem 1rem;
 }
@@ -721,40 +752,6 @@ textarea:focus {
 }
 
 /* =========================
-   EVENT DETAILS CTA (mobile only)
-========================= */
-.event-actions {
-  margin: 1rem 0 1.25rem;
-}
-
-/*TODO:(peter) MAY DELETE? */
-/* .mobile-event-action { */
-/*   position: fixed; */
-/*   left: 0; */
-/*   right: 0; */
-/*   bottom: 0; */
-/**/
-/*   padding: 0.75rem; */
-/*   background: hsl(0 0% 10% / 0.55); */
-/*   backdrop-filter: blur(10px); */
-/**/
-/*   border-top: 1px solid var(--border); */
-/*   z-index: 80; */
-/* } */
-/**/
-/* .mobile-event-action-btn { */
-/*   width: min(var(--container), 100% - (var(--gutter) * 2)); */
-/*   margin-inline: auto; */
-/* } */
-/**/
-/* @media (width > 900px) { */
-/*   .mobile-event-action { */
-/*     display: none; */
-/*   } */
-/* } */
-
-
-/* =========================
    REGISTRANTS LIST
 ========================= */
 
@@ -807,6 +804,17 @@ textarea:focus {
 #registrationForm>* {
   margin-block: 0.5rem;
 
+}
+
+.highlight {
+  color: var(--brand-2);
+  text-decoration: underline;
+}
+
+.about-image {
+  margin-block: 5rem;
+  margin-inline: auto;
+  border-radius: var(--radius-sm);
 }
 
 /* =========================

@@ -4,12 +4,9 @@ import { api } from './api/api.js';
 import { loadEvents } from './services/data.js';
 
 // NOTE: (peter) - Importing my custom web components
-import { HomePage } from './pages/HomePage.js';
 import { EventsPage } from './pages/EventsPage.js';
 import { AboutPage } from './pages/AboutPage.js';
 import { EventDetailsPage } from './pages/EventDetailsPage.js';
-import { FeaturedCarousel } from './components/featuredCarousel.js';
-import { RegistrationPage } from './pages/RegistrationPage.js';
 import { EventCard } from './components/eventCard.js';
 import { RegistrantsList } from './components/registrantsList.js';
 
@@ -21,6 +18,7 @@ app.api = api;
 
 window.addEventListener('DOMContentLoaded', () => {
     loadEvents();
+    //// NOTE: (peter) - app starts here.
     app.router.init();
 
     const menuBtn = document.querySelector('.menu-button');
