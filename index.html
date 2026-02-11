@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>event-signups</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/src/styles.css" />
     <script type="module" src="/src/app.js" defer></script>
   </head>
@@ -21,6 +22,12 @@
         >
           <img src="/src/assets/icons/menu-24.svg" alt="Menu Button" />
         </button>
+        <img
+          class="logo"
+          src="/src/assets/images/pechanga-logo.png"
+          alt="Pechanga Logo"
+          width="50"
+        />
         <h1 class="header-title">
           <a class="navlink" href="/">PECHANGA SIGNUPS</a>
         </h1>
@@ -77,10 +84,7 @@
           <div class="event-head">
             <h1 class="event-title">Featured Events</h1>
             <form class="search-bar" autocomplete="on">
-              <label>
-                Search
-                <input name="q" placeholder="Search title or description" />
-              </label>
+              <input name="q" placeholder="Search title or description" />
             </form>
           </div>
           <div class="event-gutter"><div id="eventsList"></div></div>

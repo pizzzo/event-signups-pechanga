@@ -132,7 +132,9 @@ a:focus-visible {
   border-radius: var(--radius);
   background: hsl(0 0% 100% / 0.04);
   border: 1px solid var(--border);
-  max-width: 1800px;
+
+  width: min(var(--container), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
 }
 
 .stack {
@@ -175,17 +177,17 @@ a:focus-visible {
   }
 
   .site {
-    grid-template-columns: var(--sidebar-width) 1fr;
-    grid-template-areas:
-      "header header"
-      "main main"
-      "footer footer";
+    grid-template-columns: 1fr;
   }
 }
 
 /* =========================
    HEADER
 ========================= */
+.logo {
+  border-radius: var(--radius-sm)
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -334,7 +336,7 @@ body[data-menu-open="true"] {
 ========================= */
 .site-main {
   grid-area: main;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .site-footer {
@@ -402,9 +404,9 @@ textarea:focus {
 }
 
 .search-bar {
-  border-radius: var(--radius);
-  background: hsl(0 0% 100% / 0.04);
-  border: 1px solid var(--border);
+  /* border-radius: var(--radius); */
+  /* background: hsl(0 0% 100% / 0.04); */
+  /* border: 1px solid var(--border); */
   padding: 1rem;
   max-width: 280px;
   justify-self: end;
