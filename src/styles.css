@@ -437,12 +437,35 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.2rem;
+  gap: 0.6rem;
   position: relative;
 }
 
+@media (max-width: 760px) {
+  .events-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .search-bar {
+    order: -1;
+    width: 100%;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  #filterBtn {
+    width: 100%;
+  }
+}
+
+
 #filterBtn {
-  border-radius: 1px 1px 15px 15px;
+  border-radius: 10px 10px 10px 10px;
+  max-height: 40px;
 }
 
 .filter-menu {
@@ -481,14 +504,13 @@ textarea:focus {
 
 
 .search-bar {
-  /* NOTE:(peter) unhide for fancy search bar enclosure. */
-  /* border-radius: var(--radius); */
-  /* background: hsl(0 0% 100% / 0.04); */
-  /* border: 1px solid var(--border); */
-  padding: 1rem;
-  max-width: 280px;
-  justify-self: end;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
 
+.search-bar input {
+  height: 40px;
 }
 
 
@@ -670,8 +692,21 @@ textarea:focus {
   color: var(--muted);
   font-size: 0.95rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: row;
   gap: 0.5rem;
+}
+
+
+@media (max-width: 600px) {
+  .event-card-details {
+    font-size: 0.82rem;
+  }
+
+  .event-card-title {
+    font-size: 0.95rem;
+  }
 }
 
 .event-card-dot {

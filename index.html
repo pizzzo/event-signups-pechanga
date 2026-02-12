@@ -88,7 +88,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                &#9881; Filter
+                Filter
               </button>
 
               <div class="filter-menu" id="filterMenu" hidden>
@@ -189,8 +189,8 @@
           <p class="lead muted">
             A site dedicated to letting users view and manage registration for
             upcoming company hosted
-            <a href="/events"><span class="highlight">events</span></a> at
-            Pechanga Resort and Casino.
+            <a href="/events"><span class="navlink highlight">events</span></a>
+            at Pechanga Resort and Casino.
           </p>
         </div>
       </section>
@@ -199,22 +199,21 @@
     <!-- COMPONENT TEMPLATES -->
 
     <template id="event-card-template">
-      <article class="event-card">
-        <a class="navlink" href=""
-          ><img class="event-card-image" alt="" loading="lazy"
-        /></a>
-        <div class="event-card-body">
-          <div class="event-card-header">
-            <h3 class="event-card-title"></h3>
-            <span class="event-card-badge" hidden>Featured</span>
+      <a class="navlink" href="">
+        <article class="event-card">
+          <img class="event-card-image" alt="" loading="lazy" />
+          <div class="event-card-body">
+            <div class="event-card-header">
+              <h3 class="event-card-title"></h3>
+              <span class="event-card-badge" hidden>Featured</span>
+            </div>
+            <p class="event-card-details">
+              <span class="event-card-date"></span>
+              <span class="event-card-location"></span>
+            </p>
           </div>
-          <p class="event-card-details">
-            <span class="event-card-date"></span>
-            <span class="event-card-dot">•</span>
-            <span class="event-card-location"></span>
-          </p>
-        </div>
-      </article>
+        </article>
+      </a>
     </template>
 
     <template id="featured-carousel-template">
