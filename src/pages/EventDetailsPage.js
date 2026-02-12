@@ -133,7 +133,28 @@ export class EventDetailsPage extends HTMLElement {
         const id = e.detail.id;
         if (!id) return;
 
-        if (!confirm('Delete this registrant?')) return;
+        // NOTE:(peter) - https://www.scelto.no/blog/promise-based-dialog
+        // doing this instead of the crappy alert
+        //
+        const dialog = document.getElementById('confirmDialog');
+        const message = dialog.querySelector('.confirm-message');
+        const title = dialog.querySelector('.confirm-title');
+
+        title.textContent = 'Delete registrant';
+        message.textContent =
+            'Are you sure you want to delete this registrant?';
+
+        dialog.showModal();
+
+        const result = await new Promise((resolve) => {
+            dialog.addEventListener(
+                'close',
+                () => resolve(dialog.returnValue === 'confirm'),
+                { once: true },
+            );
+        });
+
+        if (!result) return;
 
         try {
             await api.deleteRegistrant(id);

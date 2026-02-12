@@ -112,9 +112,9 @@
                 </div>
               </div>
 
-              <form class="search-bar" autocomplete="on">
-                <input name="q" placeholder="Search..." />
-              </form>
+              <div class="search-bar">
+                <input name="q" placeholder="Search..." autocomplete="on" />
+              </div>
             </div>
           </div>
           <div class="event-gutter"><div id="eventsList"></div></div>
@@ -191,11 +191,6 @@
             upcoming company hosted
             <a href="/events"><span class="highlight">events</span></a> at
             Pechanga Resort and Casino.
-            <img
-              class="about-image"
-              src="https://blogs.pechanga.com/newsroom/wp-content/uploads/2014/11/PechangaNewHotel-Back-View_sm.jpg"
-              alt="Pechanga Image"
-            />
           </p>
         </div>
       </section>
@@ -269,5 +264,17 @@
     <template id="select-option-template">
       <option value=""></option>
     </template>
+
+    <dialog id="confirmDialog" class="confirm-dialog">
+      <form method="dialog" class="confirm-content">
+        <h2 class="confirm-title">Confirm</h2>
+        <p class="confirm-message">Are you sure?</p>
+
+        <div class="confirm-actions">
+          <button value="cancel" class="btn">Cancel</button>
+          <button value="confirm" class="btn btn-primary">Confirm</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
