@@ -14,6 +14,7 @@ html {
   text-size-adjust: 100%;
 }
 
+
 body,
 h1,
 h2,
@@ -64,7 +65,8 @@ a {
   --muted: hsl(0 0% 92% / 0.75);
   --dialog-panel: hsl(0 0% 14%);
   --highlight: var(--brand-2);
-
+  --field-bg: hsl(0deg 0% 0% / 25%);
+  --capacity-bg: hsl(0deg 0% 0% / 26%);
   --brand: hsl(47 67% 73%);
   --brand-2: hsl(47 67% 85%);
 
@@ -85,25 +87,25 @@ body.theme-light {
   /* Theme */
   --bg: hsl(45deg 100% 70.22% / 10%);
   --menu-bg: hsl(0deg 0% 100% / 89%);
-  --page-bg: hsl(45 28% 96%);
-  --inner-page-bg: hsl(45 28% 96%);
+  --page-bg: hsl(40deg 64.18% 88.26% / 0%);
+  --inner-page-bg: hsl(0deg 0% 97.51% / 26%);
   --panel: hsl(0 0% 44.6%);
   --panel-2: hsl(0 0% 0%);
   --border: hsl(38 18% 74%);
   --border-inner: hsl(0 0% 77.53% / 89%);
   --border-hover: hsl(47 67% 73% / 0.35);
   --bg-hover: hsl(0 0% 75%);
-  --back-btn-hover: hsl(0 0% 91%);
-  --bg-btn: hsl(0 0% 89%);
+  --back-btn-hover: hsl(47.87deg 5.93% 25.78% / 46%);
+  --bg-btn: hsl(48.97deg 18.67% 62.13% / 11%);
   --text: hsl(35 18% 12%);
   --muted: hsl(35 10% 0% / 0.78);
   --muted-card: hsl(0 0% 92% / 0.75);
   --dialog-panel: hsl(45 28% 96%);
   --highlight: var(--brand);
+  --field-bg: hsl(0deg 0% 0% / 12%);
+  --capacity-bg: hsl(0deg 0% 100% / 49%);
 
-
-
-  --brand: hsl(47 55% 48%);
+  --brand: hsl(47deg 82.13% 72.27%);
   --brand-2: hsl(47 70% 90%);
   --brand-3: hsl(350 66% 18% / 0.35);
 
@@ -213,15 +215,50 @@ a.back-button:focus-visible {
     "footer";
 }
 
+
 @media (width > 900px) {
-  :root {
-    /* --gutter: 1.5rem; */
-  }
 
   .site {
     grid-template-columns: 1fr;
   }
 }
+
+
+.header-inner {
+  min-width: 0;
+}
+
+.header-title {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.header-title a {
+  display: block;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+
+@media (max-width: 590px) {
+  .header-title a {
+    display: flex;
+    letter-spacing: 0.03em;
+    flex-direction: column;
+    line-height: 1.05;
+
+  }
+
+  .logo {
+    display: none;
+  }
+}
+
 
 /* =========================
    HEADER
@@ -256,11 +293,6 @@ a.back-button:focus-visible {
   width: 100%;
 }
 
-.header-title a {
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  color: var(--brand);
-}
 
 .header-title a:hover,
 .header-title a:focus-visible {
@@ -298,11 +330,7 @@ a.back-button:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 15px 15px 10px 10px;
-
   min-width: 44px;
-
   width: 44px;
   height: 44px;
 
@@ -317,6 +345,9 @@ a.back-button:focus-visible {
 .theme-toggle:hover {
   border-color: var(--border-hover);
 }
+
+
+
 
 
 /* =========================
@@ -409,6 +440,7 @@ body[data-menu-open="true"] {
    MAIN + FOOTER main elements
 ========================= */
 .site-main {
+  min-height: 0;
   grid-area: main;
   padding: 1rem 0;
   place-content: center;
@@ -455,7 +487,7 @@ textarea {
 
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: hsl(0 0% 0% / 0.25);
+  background: var(--field-bg);
   color: var(--text);
 }
 
@@ -754,6 +786,39 @@ textarea:focus {
   gap: 0.5rem;
 }
 
+.event-card-image-wrap {
+  position: relative;
+}
+
+.event-card-capacity {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 650;
+
+  color: var(--text);
+  background: var(--capacity-bg);
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(8px);
+}
+
+.event-card-category {
+  margin-top: 0.25rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted-card);
+  font-weight: 600;
+}
 
 @media (max-width: 600px) {
   .event-card-details {
@@ -882,6 +947,18 @@ dialog::backdrop {
 #registrationForm>* {
   margin-block: 0.5rem;
 
+}
+
+
+
+.registrant-notes {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.registrant-info {
+  max-width: 100%;
 }
 
 .highlight {

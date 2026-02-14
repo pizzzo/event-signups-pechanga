@@ -144,7 +144,13 @@ export class RegistrantsList extends HTMLElement {
         details.className = 'muted';
         details.textContent = `${r.email} • Guests: ${r.guests}`;
 
-        info.append(name, details);
+        const notes = document.createElement('div');
+        notes.className = 'muted registrant-notes';
+        notes.textContent = r.notes
+            ? `Notes: ${this.truncateNotes(r.notes)}`
+            : 'Notes: ---';
+
+        info.append(name, details, notes);
 
         const actions = document.createElement('div');
         actions.className = 'registrant-actions';
@@ -264,6 +270,13 @@ export class RegistrantsList extends HTMLElement {
         p.className = 'muted';
         p.textContent = text;
         return p;
+    }
+
+    // NOTE: (peter) - adding this helper to avoid that killer wall of text when some one writes a big note.
+    truncateNotes(text = '', max = 80) {
+        if (!text) return '';
+
+        return text.length > max ? text.slice(0, max).trimEnd() + '...' : text;
     }
 }
 

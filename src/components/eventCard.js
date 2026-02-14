@@ -27,6 +27,8 @@ export class EventCard extends HTMLElement {
         const date = this.querySelector('.event-card-date');
         const loc = this.querySelector('.event-card-location');
         const badge = this.querySelector('.event-card-badge');
+        const capacity = this.querySelector('.event-card-capacity');
+        const category = this.querySelector('.event-card-category');
 
         title.textContent = this._event.title;
         date.textContent = this._event.date;
@@ -37,6 +39,20 @@ export class EventCard extends HTMLElement {
         img.alt = this._event.title;
 
         badge.hidden = !this._event.featured;
+
+        if (this._event.capacity != null && this._event.capacity !== '') {
+            capacity.hidden = false;
+            capacity.textContent = `Capacity: ${this._event.capacity}`;
+        } else {
+            capacity.hidden = true;
+        }
+
+        if (this._event.category) {
+            category.hidden = false;
+            category.textContent = `Category: ${this._event.category}`;
+        } else {
+            category.hidden = true;
+        }
     }
 }
 
